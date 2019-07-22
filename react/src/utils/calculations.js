@@ -1,1 +1,1 @@
-export const calculate = () => {};
+export const add = () => {};

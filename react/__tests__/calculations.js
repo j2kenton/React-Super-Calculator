@@ -1,5 +1,5 @@
-import { calculate as calc } from '../src/utils/calculations';
+import * as calc from '../src/utils/calculations';
 
 test('inputs null, returns null', () => {
-  expect(calc(null)).toEqual(undefined);
+  expect(calc.add(1, 2)).toEqual(3);
 });
