@@ -1,0 +1,108 @@
+{
+  "extends": ["airbnb", "prettier", "plugin:prettier/recommended"],
+  "plugins": ["prettier", "jsx-a11y", "react-hooks"],
+  "globals": {
+    "window": true,
+    "document": true,
+    "React": true,
+    "__ENV": true,
+    "CONFIG": true,
+    "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__": true,
+    "localStorage": true,
+    "$": true,
+    "System": true,
+    "googletag": true,
+    "dataLayer": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "rules": {
+    "strict": 0,
+    "prettier/prettier": ["error"],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
+      }
+    ],
+    "radix": ["error", "as-needed"],
+    "import/prefer-default-export": 0,
+    "react/jsx-no-bind": 0,
+    "react/no-did-update-set-state": 0,
+    "react/jsx-uses-vars": [2],
+    "no-constant-condition": 0,
+    "no-console": 0,
+    "no-extra-boolean-cast": 0,
+    "react/no-danger": 0,
+    "global-require": 0,
+    "import/no-named-as-default": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-did-mount-set-state": 0,
+    "react/forbid-prop-types": 0,
+    "linebreak-style": 0,
+    "class-methods-use-this": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "import/no-unresolved": [
+      2,
+      {
+        "caseSensitive": false
+      }
+    ],
+    "react/jsx-indent": 0,
+    "no-plusplus": 0,
+    "react/no-unescaped-entities": 0,
+    "no-debugger": 0,
+    "react/no-string-refs": 0,
+    "react/destructuring-assignment": 0,
+    "consistent-return": "off",
+    "react/void-dom-elements-no-children": 0,
+    "no-unused-vars": [1],
+    "react/require-default-props": 0,
+    "no-else-return": 0,
+    "react/no-multi-comp": 0,
+    "no-useless-computed-key": 0,
+    "new-cap": 0,
+    "prefer-destructuring": 0,
+    "react/jsx-tag-spacing": [
+      "error",
+      {
+        "beforeSelfClosing": "always"
+      }
+    ],
+    "react/jsx-wrap-multilines": 0,
+    "react/jsx-closing-tag-location": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "operator-linebreak": 0,
+    "implicit-arrow-linebreak": 0,
+    "no-restricted-globals": 0,
+    "function-paren-newline": 0,
+    "object-curly-newline": 0,
+    "import/no-cycle": 0,
+    "react/jsx-curly-brace-presence": 0,
+    "react/jsx-max-props-per-line": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "button-has-type": 0,
+    "react/button-has-type": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "controlComponents": ["Control.checkbox", "Control.text"]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/label-has-for": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "allowImportExportEverywhere": true
+  },
+  "env": {
+    "browser": true,
+    "jest": true
+  }
+}

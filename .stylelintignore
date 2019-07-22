@@ -1,0 +1,5 @@
+/src
+/react/src/assets/stylesheets
+/react/src/components/notifications
+/react/src/components/messages
+/react/**/*.scss

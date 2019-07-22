@@ -1,0 +1,13 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": ["stylelint-config-recommended-scss", "stylelint-config-styled-components"],
+  "rules": {
+  "selector-pseudo-class-no-unknown": [true, {
+    "ignorePseudoClasses": ["global", "local"]
+  }],
+  "no-descending-specificity": null,
+  "selector-type-no-unknown": null
+  }
+}
