@@ -18,7 +18,7 @@ const envConfig = require(`./config/${appEnv}.js`);
 const config = {
   watch: false,
   entry: {
-    app: ['appPath/index.js']
+    app: ['appPath/common-actions.js']
   },
 
   resolve: {
