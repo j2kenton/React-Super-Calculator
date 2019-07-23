@@ -21,17 +21,7 @@ const envConfig = require(`./config/${appEnv}.js`);
 const config = {
   watch: false,
   entry: {
-    app: ['appPath/index.js'],
-    appCSS: [
-      'react-table/react-table.css',
-      'react-perfect-scrollbar/dist/css/styles.css',
-      'react-lazy-load-image-component/src/effects/blur.css',
-      'react-datepicker/dist/react-datepicker.css',
-      'pure-react-carousel/dist/react-carousel.es.css',
-      'cropperjs/dist/cropper.css',
-      'react-scrollbar/dist/css/scrollArea.css',
-      'appPath/assets/stylesheets/preapp.scss'
-    ]
+    app: ['appPath/index.js']
   },
 
   resolve: {
@@ -285,7 +275,7 @@ const config = {
   ],
 
   devServer: {
-    port: 5000
+    port: 5001
   }
 };
 
@@ -305,15 +295,6 @@ const devCopyItems = [
     from: path.resolve(__dirname, 'Scripts'),
     to: path.resolve(distPath, 'Scripts'),
     toType: 'dir'
-  },
-  {
-    from: path.resolve(__dirname, 'config', 'auth0'),
-    to: path.resolve(distPath, 'config', 'auth0'),
-    toType: 'dir'
-  },
-  {
-    from: path.resolve(__dirname, 'apple-app-site-association'),
-    to: path.resolve(distPath)
   },
   {
     from: path.resolve(publicFolderPath, 'silent.html'),

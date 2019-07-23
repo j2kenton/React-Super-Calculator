@@ -2,3 +2,4 @@
 webpack.config.js
 /react/src/components/notifications
 /react/src/components/messages
+/react/node_modules/*
