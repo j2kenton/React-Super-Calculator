@@ -1,10 +1,11 @@
 import React from 'react';
+import Body from 'sections/body';
 
 function App() {
   return (
     <main>
       <header>the header area</header>
-      <section>a section</section>
+      <Body />
       <footer>the footer area</footer>
     </main>
   );
