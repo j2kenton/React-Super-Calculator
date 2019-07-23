@@ -9,7 +9,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 const publicFolderPath = path.join(__dirname, 'react', 'public');
@@ -291,11 +290,6 @@ if (appEnv !== 'production' && appEnv !== 'staging' && appEnv !== 'development')
 config.output.publicPath = '/';
 
 const devCopyItems = [
-  {
-    from: path.resolve(__dirname, 'Scripts'),
-    to: path.resolve(distPath, 'Scripts'),
-    toType: 'dir'
-  },
   {
     from: path.resolve(publicFolderPath, 'silent.html'),
     to: path.resolve(distPath)
