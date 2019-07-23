@@ -9,7 +9,7 @@ export const app = (state = initialState, action) => {
     case SET_OUTPUT: {
       return {
         ...state,
-        output: action.payload.output.toString()
+        output: action.payload.output
       };
     }
     default:
