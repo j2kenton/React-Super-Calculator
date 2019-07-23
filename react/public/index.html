@@ -11,7 +11,16 @@
 </head>
 
 <body id="body">
-welcome to react calc
+
+<div id="root"></div>
+
+<script>
+  document.getElementById("body").style.display = "none";
+  window.addEventListener("load", function(){
+    document.getElementById("body").style.display = "block";
+  });
+</script>
+
 </body>
 
 </html>
