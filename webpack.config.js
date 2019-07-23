@@ -3,8 +3,6 @@ const webpack = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -112,7 +110,6 @@ const config = {
       {
         test: /\.scss$/,
         use: [
-          //(appEnv !== 'production' && appEnv !== 'staging') ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -158,7 +155,6 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          //(appEnv !== 'production' && appEnv !== 'staging') ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -174,7 +170,6 @@ const config = {
         test: /\.scss$/,
         include: /node_modules/,
         use: [
-          //(appEnv !== 'production' && appEnv !== 'staging') ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -304,23 +299,5 @@ const copyItems = devCopyItems.concat([
 ]);
 
 config.plugins.push(new CopyWebpackPlugin(appEnv !== 'development' ? copyItems : devCopyItems));
-
-if (appEnv === 'production' || appEnv === 'staging') {
-  config.plugins.push(
-    new CleanWebpackPlugin([distPath]),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.html$ |\.css$/,
-      threshold: 10240,
-      minRatio: 0.8
-    }),
-
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    })
-  );
-}
 
 module.exports = config;
