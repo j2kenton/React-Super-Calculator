@@ -18,7 +18,7 @@ const envConfig = require(`./config/${appEnv}.js`);
 const config = {
   watch: false,
   entry: {
-    app: ['appPath/common-actions.js']
+    app: ['appPath/index.js']
   },
 
   resolve: {
@@ -277,7 +277,7 @@ if (appEnv !== 'production' && appEnv !== 'staging' && appEnv !== 'development')
   config.devtool = 'cheap-module-eval-source-map';
   config.plugins.push(
     new BundleAnalyzerPlugin({
-      analyzerPort: 8889
+      analyzerPort: 8899
     })
   );
 }
