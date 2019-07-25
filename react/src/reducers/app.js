@@ -1,9 +1,10 @@
-import { SET_OUTPUT, UPDATE_OUTPUT } from 'constants/action-types';
+import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 
 const initialState = {
   output: '0',
-  input: ''
+  input: '',
+  operator: 'add'
 };
 
 export const app = (state = initialState, action) => {
@@ -17,8 +18,19 @@ export const app = (state = initialState, action) => {
     case UPDATE_OUTPUT: {
       return {
         ...state,
-        output: calculateUpdatedValue({ ...action.payload, currentValue: state.output }),
-        input: action.payload.valueApplied
+        output: calculateUpdatedValue({
+          currentValue: state.output,
+          valueApplied: state.input,
+          operator: state.operator
+        }),
+        input: initialState.input,
+        operator: initialState.operator
+      };
+    }
+    case UPDATE_INPUT: {
+      return {
+        ...state,
+        input: action.payload
       };
     }
     default:

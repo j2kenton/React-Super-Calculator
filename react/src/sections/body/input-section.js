@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { updateOutput as updateOutputAction } from 'common-actions';
+import {
+  updateOutput as updateOutputAction,
+  updateInput as updateInputAction
+} from 'common-actions';
 
 const InputWrapper = styled.div`
   background-color: orange;
+`;
+
+const ApplyButton = styled.button`
+  background-color: grey;
 `;
 
 const InputArea = styled.input.attrs({
@@ -13,22 +20,29 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
-export const InputSection = ({ input, updateOutput }) => {
+export const InputSection = ({ input, updateOutput, updateInput }) => {
   const onInputChange = e => {
     e.preventDefault();
-    updateOutput('add', e.target.value);
+    updateInput(e.target.value);
+  };
+
+  const onApply = e => {
+    e.preventDefault();
+    updateOutput();
   };
 
   return (
     <InputWrapper>
       <InputArea name="inputArea" id="inputArea" onChange={onInputChange} value={input} />
+      <ApplyButton onClick={onApply}>apply</ApplyButton>
     </InputWrapper>
   );
 };
 
 InputSection.propTypes = {
   input: PropTypes.string,
-  updateOutput: PropTypes.func
+  updateOutput: PropTypes.func,
+  updateInput: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({
@@ -37,5 +51,5 @@ const mapStateToProps = ({ app }) => ({
 
 export default connect(
   mapStateToProps,
-  { updateOutput: updateOutputAction }
+  { updateOutput: updateOutputAction, updateInput: updateInputAction }
 )(InputSection);
