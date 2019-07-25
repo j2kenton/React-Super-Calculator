@@ -5,15 +5,15 @@ export const OPERATORS = Object.freeze({
   },
   subtract: {
     functionName: 'subtract',
-    symbol: '-'
+    symbol: '−'
   },
   multiply: {
     functionName: 'multiply',
-    symbol: '*'
+    symbol: '×'
   },
   divide: {
     functionName: 'divide',
-    symbol: '/'
+    symbol: '÷'
   }
 });
 

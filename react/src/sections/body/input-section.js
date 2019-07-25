@@ -26,7 +26,14 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
-export const InputSection = ({ input, updateOutput, updateInput, operator, onBlur }) => {
+export const InputSection = ({
+  input,
+  updateOutput,
+  updateInput,
+  operator,
+  onBlur,
+  onButtonClick
+}) => {
   const onInputChange = e => {
     e.preventDefault();
     updateInput(e.target.value);
@@ -34,6 +41,7 @@ export const InputSection = ({ input, updateOutput, updateInput, operator, onBlu
 
   const onApply = e => {
     e.preventDefault();
+    onButtonClick();
     if (input) {
       updateOutput();
     }
@@ -69,7 +77,8 @@ InputSection.propTypes = {
   operator: PropTypes.string,
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  onButtonClick: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({

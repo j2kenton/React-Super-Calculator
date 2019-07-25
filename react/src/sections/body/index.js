@@ -23,7 +23,7 @@ export const Body = () => {
   return (
     <StyledSection>
       <OutputSection />
-      <InputSection onBlur={onBlur} />
+      <InputSection onBlur={onBlur} onButtonClick={() => restoreLastFocus(lastBlured)} />
       <InputControls onBlur={onButtonBlur} onButtonClick={() => restoreLastFocus(lastBlured)} />
     </StyledSection>
   );
