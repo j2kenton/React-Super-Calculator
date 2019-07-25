@@ -7,6 +7,7 @@ import {
   updateInput as updateInputAction
 } from 'common-actions';
 import { OPERATORS } from 'constants/numeric';
+import OperatorControls from '../../components/operator-controls';
 
 const InputWrapper = styled.div`
   background-color: orange;
@@ -56,7 +57,7 @@ export const InputSection = ({
 
   return (
     <InputWrapper>
-      <OperatorDisplay>{OPERATORS[operator] && OPERATORS[operator].symbol}</OperatorDisplay>
+      <OperatorControls onButtonClick={onButtonClick} />
       <InputArea
         name="inputArea"
         id="inputArea"

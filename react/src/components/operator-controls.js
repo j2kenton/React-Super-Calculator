@@ -9,7 +9,7 @@ const OperatorsWrapper = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color: white;
+  color: ${props => (props.selected ? 'red' : 'grey')};
 `;
 
 export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
@@ -17,10 +17,15 @@ export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
     onButtonClick();
     setOperator(operatorKey);
   };
+
   return (
     <OperatorsWrapper>
       {Object.entries(OPERATORS).map(entry => (
-        <StyledButton key={entry[0]} onClick={() => onOperatorSelection(entry[0])}>
+        <StyledButton
+          key={entry[0]}
+          onClick={() => onOperatorSelection(entry[0])}
+          selected={entry[0] === operator}
+        >
           {entry[1].symbol}
         </StyledButton>
       ))}
