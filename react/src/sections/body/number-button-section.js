@@ -26,7 +26,7 @@ export const NumberButtonSection = ({ input, appendToInput, operator, onBlur, on
 
   return (
     <ButtonsWrapper>
-      {['7', '8', '9', '4', '5', '6', '1', '2', '3', '?', '0', '.'].map(text => (
+      {['7', '8', '9', '4', '5', '6', '1', '2', '3', '-', '0', '.'].map(text => (
         <NumberButton onClick={e => onNumberButtonClick(e, text)} key={text}>
           {text}
         </NumberButton>

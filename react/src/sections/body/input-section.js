@@ -13,12 +13,13 @@ const InputWrapper = styled.div`
   background-color: orange;
 `;
 
-const Row = styled.div`
-  border: 1px solid black;
-`;
-
 const ApplyButton = styled.button`
   background-color: grey;
+`;
+
+const BackspaceButton = styled.button`
+  background-color: grey;
+  color: white;
 `;
 
 const InputArea = styled.input.attrs({
@@ -65,30 +66,26 @@ export const InputSection = ({
 
   return (
     <InputWrapper>
-      <Row>
-        <OperatorControls onButtonClick={onButtonClick} />
-        <InputArea
-          name="inputArea"
-          id="inputArea"
-          onChange={onInputChange}
-          value={input}
-          onBlur={onBlur}
-          ref={ref}
-          onKeyPress={e => {
-            if (e.key === 'Enter') {
-              onApply(e);
-            }
-          }}
-        />
-        <ApplyButton onClick={onBackspace} disabled={!input}>
-          ⇐
-        </ApplyButton>
-      </Row>
-      <Row>
-        <ApplyButton onClick={onApply} disabled={!input}>
-          apply
-        </ApplyButton>
-      </Row>
+      <OperatorControls onButtonClick={onButtonClick} />
+      <InputArea
+        name="inputArea"
+        id="inputArea"
+        onChange={onInputChange}
+        value={input}
+        onBlur={onBlur}
+        ref={ref}
+        onKeyPress={e => {
+          if (e.key === 'Enter') {
+            onApply(e);
+          }
+        }}
+      />
+      <BackspaceButton onClick={onBackspace} disabled={!input}>
+        ⇐
+      </BackspaceButton>
+      <ApplyButton onClick={onApply} disabled={!input}>
+        apply
+      </ApplyButton>
     </InputWrapper>
   );
 };
