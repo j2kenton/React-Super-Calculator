@@ -17,20 +17,36 @@ const SignButton = styled.button`
 
 const NumberArea = styled.span`
   background-color: grey;
+  color: white;
+  font-weight: bold;
 `;
 
-export const OutputSection = ({ output, toggleOutputNegativity }) => (
-  <OutputWrapper>
-    <OutputArea>
-      <SignButton onClick={toggleOutputNegativity}>{output < 0 && '-'}</SignButton>
-      <NumberArea>{Math.abs(output)}</NumberArea>
-    </OutputArea>
-  </OutputWrapper>
-);
+const SignSymbol = styled.span`
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+`;
+
+export const OutputSection = ({ output, toggleOutputNegativity, onButtonClick }) => {
+  const onToggleSign = e => {
+    e.preventDefault();
+    onButtonClick();
+    toggleOutputNegativity();
+  };
+  return (
+    <OutputWrapper>
+      <OutputArea>
+        <SignButton onClick={e => onToggleSign(e)}>
+          <SignSymbol visible={output < 0}>-</SignSymbol>
+        </SignButton>
+        <NumberArea>{Math.abs(output)}</NumberArea>
+      </OutputArea>
+    </OutputWrapper>
+  );
+};
 
 OutputSection.propTypes = {
   output: PropTypes.number,
-  toggleOutputNegativity: PropTypes.func
+  toggleOutputNegativity: PropTypes.func,
+  onButtonClick: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({

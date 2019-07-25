@@ -6,6 +6,7 @@ import { setOperator as setOperatorAction } from 'common-actions';
 
 const OperatorsWrapper = styled.div`
   background-color: purple;
+  float: left;
 `;
 
 const StyledButton = styled.button`
