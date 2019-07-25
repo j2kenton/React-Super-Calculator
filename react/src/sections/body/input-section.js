@@ -6,15 +6,10 @@ import {
   updateOutput as updateOutputAction,
   updateInput as updateInputAction
 } from 'common-actions';
-import { OPERATORS } from 'constants/numeric';
 import OperatorControls from '../../components/operator-controls';
 
 const InputWrapper = styled.div`
   background-color: orange;
-`;
-
-const OperatorDisplay = styled.span`
-  background-color: lilac;
 `;
 
 const ApplyButton = styled.button`
@@ -22,19 +17,12 @@ const ApplyButton = styled.button`
 `;
 
 const InputArea = styled.input.attrs({
-  type: 'number'
+  type: 'text'
 })`
   background-color: green;
 `;
 
-export const InputSection = ({
-  input,
-  updateOutput,
-  updateInput,
-  operator,
-  onBlur,
-  onButtonClick
-}) => {
+export const InputSection = ({ input, updateOutput, updateInput, onBlur, onButtonClick }) => {
   const onInputChange = e => {
     e.preventDefault();
     updateInput(e.target.value);
@@ -80,7 +68,6 @@ export const InputSection = ({
 
 InputSection.propTypes = {
   input: PropTypes.string,
-  operator: PropTypes.string,
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,
   onBlur: PropTypes.func,
