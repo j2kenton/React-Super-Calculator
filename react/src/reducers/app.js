@@ -12,6 +12,7 @@ import { isInputValid } from 'utils/tools';
 
 const initialState = {
   output: 0,
+  preview: '',
   input: '',
   operator: 'add'
 };
@@ -32,26 +33,42 @@ export const app = (state = initialState, action) => {
           valueApplied: state.input,
           operator: state.operator
         }),
-        input: initialState.input
+        input: initialState.input,
+        preview: initialState.preview
       };
     }
     case UPDATE_INPUT: {
-      if (!isInputValid(action.payload)) {
-        return state;
-      }
+      const newInput = action.payload;
+      const isInputTextValid = isInputValid(newInput);
+      const preview = isInputTextValid
+        ? calculateUpdatedValue({
+            currentValue: state.output,
+            valueApplied: newInput,
+            operator: state.operator
+          })
+        : initialState.preview;
+      const input = isInputTextValid ? newInput : state.input;
       return {
         ...state,
-        input: action.payload
+        preview: `${preview}`,
+        input
       };
     }
     case APPEND_TO_INPUT: {
       const textToAppend = action.payload;
-      const input = `${state.input}${textToAppend}`;
-      if (!isInputValid(input)) {
-        return state;
-      }
+      const newInput = `${state.input}${textToAppend}`;
+      const isInputTextValid = isInputValid(newInput);
+      const preview = isInputTextValid
+        ? calculateUpdatedValue({
+            currentValue: state.output,
+            valueApplied: newInput,
+            operator: state.operator
+          })
+        : initialState.preview;
+      const input = isInputTextValid ? newInput : state.input;
       return {
         ...state,
+        preview: `${preview}`,
         input
       };
     }

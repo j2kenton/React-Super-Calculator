@@ -13,6 +13,10 @@ const InputWrapper = styled.div`
   background-color: orange;
 `;
 
+const Row = styled.div`
+  border: 1px solid black;
+`;
+
 const ApplyButton = styled.button`
   background-color: grey;
 `;
@@ -28,7 +32,15 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
+const PreviewSection = styled.div`
+  color: grey;
+  float: left;
+  min-width: 100px;
+  min-height: 10px;
+`;
+
 export const InputSection = ({
+  preview,
   input,
   updateOutput,
   updateInput,
@@ -66,31 +78,37 @@ export const InputSection = ({
 
   return (
     <InputWrapper>
-      <OperatorControls onButtonClick={onButtonClick} />
-      <InputArea
-        name="inputArea"
-        id="inputArea"
-        onChange={onInputChange}
-        value={input}
-        onBlur={onBlur}
-        ref={ref}
-        onKeyPress={e => {
-          if (e.key === 'Enter') {
-            onApply(e);
-          }
-        }}
-      />
-      <BackspaceButton onClick={onBackspace} disabled={!input}>
-        ⇐
-      </BackspaceButton>
-      <ApplyButton onClick={onApply} disabled={!input}>
-        apply
-      </ApplyButton>
+      <Row>
+        <OperatorControls onButtonClick={onButtonClick} />
+        <InputArea
+          name="inputArea"
+          id="inputArea"
+          onChange={onInputChange}
+          value={input}
+          onBlur={onBlur}
+          ref={ref}
+          onKeyPress={e => {
+            if (e.key === 'Enter') {
+              onApply(e);
+            }
+          }}
+        />
+        <BackspaceButton onClick={onBackspace} disabled={!input}>
+          ⇐
+        </BackspaceButton>
+      </Row>
+      <Row>
+        <PreviewSection>{preview}</PreviewSection>
+        <ApplyButton onClick={onApply} disabled={!input}>
+          apply
+        </ApplyButton>
+      </Row>
     </InputWrapper>
   );
 };
 
 InputSection.propTypes = {
+  preview: PropTypes.number,
   input: PropTypes.string,
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,
@@ -100,6 +118,7 @@ InputSection.propTypes = {
 };
 
 const mapStateToProps = ({ app }) => ({
+  preview: app.preview,
   input: app.input,
   operator: app.operator
 });
