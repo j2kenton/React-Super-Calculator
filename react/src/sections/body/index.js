@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { restoreLastFocus } from 'utils/tools';
 import OutputSection from './output-section';
 import InputSection from './input-section';
+import NumberButtonSection from './number-button-section';
 
 const StyledSection = styled.section`
   background-color: pink;
@@ -19,6 +20,7 @@ export const Body = () => {
     <StyledSection>
       <OutputSection onButtonClick={() => restoreLastFocus(lastBlured)} />
       <InputSection onBlur={onBlur} onButtonClick={() => restoreLastFocus(lastBlured)} />
+      <NumberButtonSection onButtonClick={() => restoreLastFocus(lastBlured)} />
     </StyledSection>
   );
 };

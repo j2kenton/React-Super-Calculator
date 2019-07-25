@@ -3,10 +3,11 @@ import {
   UPDATE_OUTPUT,
   UPDATE_INPUT,
   SET_OPERATOR,
-  TOGGLE_NEGATIVITY
+  TOGGLE_NEGATIVITY,
+  APPEND_TO_INPUT
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
-import { VALID_INPUT_CHARS_REGEX } from 'constants/numeric';
+import { isInputValid } from 'utils/tools';
 
 const initialState = {
   output: 0,
@@ -34,16 +35,23 @@ export const app = (state = initialState, action) => {
       };
     }
     case UPDATE_INPUT: {
-      const userInput = action.payload;
-      const dotsInInput = userInput.match(/\./);
-      const isTooManyDots = !!dotsInInput && dotsInInput.length > 1;
-      const isAllCharsLegal = VALID_INPUT_CHARS_REGEX.test(userInput);
-      if (isTooManyDots || !isAllCharsLegal) {
+      if (!isInputValid(action.payload)) {
         return state;
       }
       return {
         ...state,
         input: action.payload
+      };
+    }
+    case APPEND_TO_INPUT: {
+      const textToAppend = action.payload;
+      const input = `${state.input}${textToAppend}`;
+      if (!isInputValid(input)) {
+        return state;
+      }
+      return {
+        ...state,
+        input
       };
     }
     case SET_OPERATOR: {

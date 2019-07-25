@@ -3,7 +3,8 @@ import {
   UPDATE_OUTPUT,
   UPDATE_INPUT,
   SET_OPERATOR,
-  TOGGLE_NEGATIVITY
+  TOGGLE_NEGATIVITY,
+  APPEND_TO_INPUT
 } from 'constants/action-types';
 
 export function setOutput(output) {
@@ -38,5 +39,12 @@ export function setOperator(operator) {
 export function toggleOutputNegativity() {
   return {
     type: TOGGLE_NEGATIVITY
+  };
+}
+
+export function appendToInput(text) {
+  return {
+    type: APPEND_TO_INPUT,
+    payload: text
   };
 }
