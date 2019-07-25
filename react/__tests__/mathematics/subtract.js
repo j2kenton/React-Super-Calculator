@@ -18,7 +18,7 @@ test('subtracts undefined property and number input values to get null ', () => 
 });
 
 /** ******** INTEGERS ********* */
-test('subtracts numeric strings correctly (1 + 1 = 0)  😊 ', () => {
+test('subtracts numeric strings correctly (1 - 1 = 0)  😊 ', () => {
   expect(subtract('1', '1')).toEqual(0);
 });
 test('subtracts overloaded arguments to ignore extras and output first two args properly ', () => {
@@ -29,10 +29,10 @@ test('subtracts numbers as numbers correctly', () => {
 });
 
 /** ******** FLOATS ********* */
-test('subtracts 1.5 + 1.3 to get 2.8 ', () => {
+test('subtracts 1.5 - 1.3 to get 2.8 ', () => {
   expect(subtract('1.1', '1.1')).toEqual(0);
 });
-test('subtracts 0.5 + 0.5 to get 1 ', () => {
+test('subtracts 0.5 - 0.5 to get 1 ', () => {
   expect(subtract('0.5', '0.5')).toEqual(0);
 });
 
@@ -45,13 +45,13 @@ test('subtracts negative numbers as numbers correctly', () => {
 });
 
 /** ******** NEGATIVE FLOATS ********* */
-test('subtracts -0.5 + -0.5 to get 0 ', () => {
+test('subtracts -0.5 - -0.5 to get 0 ', () => {
   expect(subtract('-0.5', '-0.5')).toEqual(0);
 });
-test('subtracts -5.5 + 1.3 to get -6.8 ', () => {
+test('subtracts -5.5 - 1.3 to get -6.8 ', () => {
   expect(subtract('-5.5', '1.3')).toEqual(-6.8);
 });
-test('subtracts 0.5 + -1.5 to get 2 ', () => {
+test('subtracts 0.5 - -1.5 to get 2 ', () => {
   expect(subtract('0.5', '-1.5')).toEqual(2);
 });
 
