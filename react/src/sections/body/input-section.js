@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { setOutput as setOutputAction } from 'common-actions';
+import { updateOutput as updateOutputAction } from 'common-actions';
 
 const InputWrapper = styled.div`
   background-color: orange;
@@ -13,28 +13,29 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
-export const InputSection = ({ output, setOutput }) => {
+export const InputSection = ({ input, updateOutput }) => {
   const onInputChange = e => {
-    setOutput(e.target.value);
+    e.preventDefault();
+    updateOutput(e.target.value, 'add');
   };
 
   return (
     <InputWrapper>
-      <InputArea name="inputArea" id="inputArea" onChange={onInputChange} value={output} />
+      <InputArea name="inputArea" id="inputArea" onChange={onInputChange} value={input} />
     </InputWrapper>
   );
 };
 
 InputSection.propTypes = {
-  output: PropTypes.string,
-  setOutput: PropTypes.func
+  input: PropTypes.string,
+  updateOutput: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({
-  output: app.output
+  input: app.input
 });
 
 export default connect(
   mapStateToProps,
-  { setOutput: setOutputAction }
+  { updateOutput: updateOutputAction }
 )(InputSection);

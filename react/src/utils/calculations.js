@@ -1,1 +1,6 @@
-export const add = (...args) => [...args].reduce((a, b) => a + b, 0);
+import * as maths from './mathematics';
+
+export const calculateUpdatedValue = ({ currentValue, valueApplied, operator }) => {
+  const functionUsed = maths[operator];
+  return functionUsed(currentValue, valueApplied);
+};
