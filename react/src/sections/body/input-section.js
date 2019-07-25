@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -38,6 +39,13 @@ export const InputSection = ({ input, updateOutput, updateInput, operator, onBlu
     }
   };
 
+  const ref = useRef();
+  useEffect(() => {
+    if (ref && ref.current) {
+      ref.current.focus();
+    }
+  }, []);
+
   return (
     <InputWrapper>
       <OperatorDisplay>{OPERATORS[operator] && OPERATORS[operator].symbol}</OperatorDisplay>
@@ -47,6 +55,7 @@ export const InputSection = ({ input, updateOutput, updateInput, operator, onBlu
         onChange={onInputChange}
         value={input}
         onBlur={onBlur}
+        ref={ref}
       />
       <ApplyButton onClick={onApply} disabled={!input}>
         apply
