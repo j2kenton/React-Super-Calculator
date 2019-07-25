@@ -17,7 +17,8 @@ export const app = (state = initialState, action) => {
     case UPDATE_OUTPUT: {
       return {
         ...state,
-        output: calculateUpdatedValue({ ...action.payload, currentValue: state.output })
+        output: calculateUpdatedValue({ ...action.payload, currentValue: state.output }),
+        input: action.payload.valueApplied
       };
     }
     default:

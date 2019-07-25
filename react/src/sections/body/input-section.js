@@ -16,7 +16,7 @@ const InputArea = styled.input.attrs({
 export const InputSection = ({ input, updateOutput }) => {
   const onInputChange = e => {
     e.preventDefault();
-    updateOutput(e.target.value, 'add');
+    updateOutput('add', e.target.value);
   };
 
   return (
