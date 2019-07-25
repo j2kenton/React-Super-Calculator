@@ -65,6 +65,11 @@ export const InputSection = ({
         value={input}
         onBlur={onBlur}
         ref={ref}
+        onKeyPress={e => {
+          if (e.key === 'Enter') {
+            onApply(e);
+          }
+        }}
       />
       <ApplyButton onClick={onApply} disabled={!input}>
         apply
