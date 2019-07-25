@@ -25,7 +25,7 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
-export const InputSection = ({ input, updateOutput, updateInput, operator }) => {
+export const InputSection = ({ input, updateOutput, updateInput, operator, onBlur }) => {
   const onInputChange = e => {
     e.preventDefault();
     updateInput(e.target.value);
@@ -33,14 +33,24 @@ export const InputSection = ({ input, updateOutput, updateInput, operator }) => 
 
   const onApply = e => {
     e.preventDefault();
-    updateOutput();
+    if (input) {
+      updateOutput();
+    }
   };
 
   return (
     <InputWrapper>
       <OperatorDisplay>{OPERATORS[operator] && OPERATORS[operator].symbol}</OperatorDisplay>
-      <InputArea name="inputArea" id="inputArea" onChange={onInputChange} value={input} />
-      <ApplyButton onClick={onApply}>apply</ApplyButton>
+      <InputArea
+        name="inputArea"
+        id="inputArea"
+        onChange={onInputChange}
+        value={input}
+        onBlur={onBlur}
+      />
+      <ApplyButton onClick={onApply} disabled={!input}>
+        apply
+      </ApplyButton>
     </InputWrapper>
   );
 };
@@ -49,7 +59,8 @@ InputSection.propTypes = {
   input: PropTypes.string,
   operator: PropTypes.string,
   updateOutput: PropTypes.func,
-  updateInput: PropTypes.func
+  updateInput: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({

@@ -12,8 +12,9 @@ const StyledButton = styled.button`
   background-color: white;
 `;
 
-export const OperatorControls = ({ setOperator, operator }) => {
+export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
   const onOperatorSelection = operatorKey => {
+    onButtonClick();
     setOperator(operatorKey);
   };
   return (
@@ -29,7 +30,8 @@ export const OperatorControls = ({ setOperator, operator }) => {
 
 OperatorControls.propTypes = {
   operator: PropTypes.string,
-  setOperator: PropTypes.func
+  setOperator: PropTypes.func,
+  onButtonClick: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({
