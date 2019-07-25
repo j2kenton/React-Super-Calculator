@@ -1,4 +1,10 @@
-import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT, SET_OPERATOR } from 'constants/action-types';
+import {
+  SET_OUTPUT,
+  UPDATE_OUTPUT,
+  UPDATE_INPUT,
+  SET_OPERATOR,
+  TOGGLE_NEGATIVITY
+} from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 import { VALID_INPUT_CHARS_REGEX } from 'constants/numeric';
 
@@ -45,6 +51,12 @@ export const app = (state = initialState, action) => {
       return {
         ...state,
         operator: action.payload
+      };
+    }
+    case TOGGLE_NEGATIVITY: {
+      return {
+        ...state,
+        output: state.output * -1
       };
     }
     default:

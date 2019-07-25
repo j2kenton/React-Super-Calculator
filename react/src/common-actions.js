@@ -1,4 +1,10 @@
-import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT, SET_OPERATOR } from 'constants/action-types';
+import {
+  SET_OUTPUT,
+  UPDATE_OUTPUT,
+  UPDATE_INPUT,
+  SET_OPERATOR,
+  TOGGLE_NEGATIVITY
+} from 'constants/action-types';
 
 export function setOutput(output) {
   return {
@@ -26,5 +32,11 @@ export function setOperator(operator) {
   return {
     type: SET_OPERATOR,
     payload: operator
+  };
+}
+
+export function toggleOutputNegativity() {
+  return {
+    type: TOGGLE_NEGATIVITY
   };
 }
