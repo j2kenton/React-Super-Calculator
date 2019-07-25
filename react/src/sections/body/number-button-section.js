@@ -5,10 +5,16 @@ import { appendToInput as appendToInputAction } from 'common-actions';
 
 const ButtonsWrapper = styled.div`
   background-color: green;
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  margin-left: 100px;
 `;
 
 const NumberButton = styled.button`
   background-color: grey;
+  flex: 1 0 33%;
 `;
 
 export const NumberButtonSection = ({ input, appendToInput, operator, onBlur, onButtonClick }) => {

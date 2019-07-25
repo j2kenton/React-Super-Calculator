@@ -4,7 +4,8 @@ import {
   UPDATE_INPUT,
   SET_OPERATOR,
   TOGGLE_NEGATIVITY,
-  APPEND_TO_INPUT
+  APPEND_TO_INPUT,
+  INPUT_REMOVE_LAST_CHAR
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 import { isInputValid } from 'utils/tools';
@@ -52,6 +53,12 @@ export const app = (state = initialState, action) => {
       return {
         ...state,
         input
+      };
+    }
+    case INPUT_REMOVE_LAST_CHAR: {
+      return {
+        ...state,
+        input: state.input.slice(0, -1)
       };
     }
     case SET_OPERATOR: {

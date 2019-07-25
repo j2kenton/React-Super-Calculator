@@ -4,7 +4,8 @@ import {
   UPDATE_INPUT,
   SET_OPERATOR,
   TOGGLE_NEGATIVITY,
-  APPEND_TO_INPUT
+  APPEND_TO_INPUT,
+  INPUT_REMOVE_LAST_CHAR
 } from 'constants/action-types';
 
 export function setOutput(output) {
@@ -46,5 +47,11 @@ export function appendToInput(text) {
   return {
     type: APPEND_TO_INPUT,
     payload: text
+  };
+}
+
+export function inputRemoveLastChar() {
+  return {
+    type: INPUT_REMOVE_LAST_CHAR
   };
 }

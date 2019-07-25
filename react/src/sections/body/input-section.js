@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {
   updateOutput as updateOutputAction,
-  updateInput as updateInputAction
+  updateInput as updateInputAction,
+  inputRemoveLastChar as inputRemoveLastCharAction
 } from 'common-actions';
 import OperatorControls from '../../components/operator-controls';
 
 const InputWrapper = styled.div`
   background-color: orange;
+`;
+
+const Row = styled.div`
+  border: 1px solid black;
 `;
 
 const ApplyButton = styled.button`
@@ -22,7 +27,14 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
-export const InputSection = ({ input, updateOutput, updateInput, onBlur, onButtonClick }) => {
+export const InputSection = ({
+  input,
+  updateOutput,
+  updateInput,
+  onBlur,
+  onButtonClick,
+  inputRemoveLastChar
+}) => {
   const onInputChange = e => {
     e.preventDefault();
     updateInput(e.target.value);
@@ -36,6 +48,14 @@ export const InputSection = ({ input, updateOutput, updateInput, onBlur, onButto
     }
   };
 
+  const onBackspace = e => {
+    e.preventDefault();
+    onButtonClick();
+    if (input) {
+      inputRemoveLastChar();
+    }
+  };
+
   const ref = useRef();
   useEffect(() => {
     if (ref && ref.current) {
@@ -45,23 +65,30 @@ export const InputSection = ({ input, updateOutput, updateInput, onBlur, onButto
 
   return (
     <InputWrapper>
-      <OperatorControls onButtonClick={onButtonClick} />
-      <InputArea
-        name="inputArea"
-        id="inputArea"
-        onChange={onInputChange}
-        value={input}
-        onBlur={onBlur}
-        ref={ref}
-        onKeyPress={e => {
-          if (e.key === 'Enter') {
-            onApply(e);
-          }
-        }}
-      />
-      <ApplyButton onClick={onApply} disabled={!input}>
-        apply
-      </ApplyButton>
+      <Row>
+        <OperatorControls onButtonClick={onButtonClick} />
+        <InputArea
+          name="inputArea"
+          id="inputArea"
+          onChange={onInputChange}
+          value={input}
+          onBlur={onBlur}
+          ref={ref}
+          onKeyPress={e => {
+            if (e.key === 'Enter') {
+              onApply(e);
+            }
+          }}
+        />
+        <ApplyButton onClick={onBackspace} disabled={!input}>
+          ⇐
+        </ApplyButton>
+      </Row>
+      <Row>
+        <ApplyButton onClick={onApply} disabled={!input}>
+          apply
+        </ApplyButton>
+      </Row>
     </InputWrapper>
   );
 };
@@ -71,7 +98,8 @@ InputSection.propTypes = {
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,
   onBlur: PropTypes.func,
-  onButtonClick: PropTypes.func
+  onButtonClick: PropTypes.func,
+  inputRemoveLastChar: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({
@@ -81,5 +109,9 @@ const mapStateToProps = ({ app }) => ({
 
 export default connect(
   mapStateToProps,
-  { updateOutput: updateOutputAction, updateInput: updateInputAction }
+  {
+    updateOutput: updateOutputAction,
+    updateInput: updateInputAction,
+    inputRemoveLastChar: inputRemoveLastCharAction
+  }
 )(InputSection);

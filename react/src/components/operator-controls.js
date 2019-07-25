@@ -6,11 +6,15 @@ import { setOperator as setOperatorAction } from 'common-actions';
 
 const OperatorsWrapper = styled.div`
   background-color: purple;
+  left: 100px;
   float: left;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const StyledButton = styled.button`
   color: ${props => (props.selected ? 'red' : 'grey')};
+  flex: 1 0 50%;
 `;
 
 export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
