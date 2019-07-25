@@ -30,8 +30,7 @@ export const app = (state = initialState, action) => {
           valueApplied: state.input,
           operator: state.operator
         }),
-        input: initialState.input,
-        operator: initialState.operator
+        input: initialState.input
       };
     }
     case UPDATE_INPUT: {
