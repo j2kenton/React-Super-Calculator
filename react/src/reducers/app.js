@@ -1,4 +1,4 @@
-import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT } from 'constants/action-types';
+import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT, SET_OPERATOR } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 import { VALID_INPUT_CHARS_REGEX } from 'constants/numeric';
 
@@ -39,6 +39,12 @@ export const app = (state = initialState, action) => {
       return {
         ...state,
         input: action.payload
+      };
+    }
+    case SET_OPERATOR: {
+      return {
+        ...state,
+        operator: action.payload
       };
     }
     default:

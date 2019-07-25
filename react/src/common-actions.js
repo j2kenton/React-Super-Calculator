@@ -1,4 +1,4 @@
-import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT } from 'constants/action-types';
+import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT, SET_OPERATOR } from 'constants/action-types';
 
 export function setOutput(output) {
   return {
@@ -19,5 +19,12 @@ export function updateInput(valueApplied) {
   return {
     type: UPDATE_INPUT,
     payload: valueApplied
+  };
+}
+
+export function setOperator(operator) {
+  return {
+    type: SET_OPERATOR,
+    payload: operator
   };
 }
