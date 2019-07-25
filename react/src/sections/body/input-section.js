@@ -5,9 +5,14 @@ import {
   updateOutput as updateOutputAction,
   updateInput as updateInputAction
 } from 'common-actions';
+import { OPERATORS } from 'constants/operators';
 
 const InputWrapper = styled.div`
   background-color: orange;
+`;
+
+const OperatorDisplay = styled.span`
+  background-color: lilac;
 `;
 
 const ApplyButton = styled.button`
@@ -20,7 +25,7 @@ const InputArea = styled.input.attrs({
   background-color: green;
 `;
 
-export const InputSection = ({ input, updateOutput, updateInput }) => {
+export const InputSection = ({ input, updateOutput, updateInput, operator }) => {
   const onInputChange = e => {
     e.preventDefault();
     updateInput(e.target.value);
@@ -33,6 +38,7 @@ export const InputSection = ({ input, updateOutput, updateInput }) => {
 
   return (
     <InputWrapper>
+      <OperatorDisplay>{OPERATORS[operator] && OPERATORS[operator].symbol}</OperatorDisplay>
       <InputArea name="inputArea" id="inputArea" onChange={onInputChange} value={input} />
       <ApplyButton onClick={onApply}>apply</ApplyButton>
     </InputWrapper>
@@ -41,12 +47,14 @@ export const InputSection = ({ input, updateOutput, updateInput }) => {
 
 InputSection.propTypes = {
   input: PropTypes.string,
+  operator: PropTypes.string,
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({
-  input: app.input
+  input: app.input,
+  operator: app.operator
 });
 
 export default connect(

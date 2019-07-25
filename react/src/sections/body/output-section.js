@@ -17,7 +17,7 @@ export const OutputSection = ({ output }) => (
 );
 
 OutputSection.propTypes = {
-  output: PropTypes.string
+  output: PropTypes.number
 };
 
 const mapStateToProps = ({ app }) => ({

@@ -1,14 +1,18 @@
 export const OPERATORS = Object.freeze({
   add: {
-    functionName: 'add'
+    functionName: 'add',
+    symbol: '+'
   },
   subtract: {
-    functionName: 'subtract'
+    functionName: 'subtract',
+    symbol: '-'
   },
   multiply: {
-    functionName: 'multiply'
+    functionName: 'multiply',
+    symbol: '*'
   },
   divide: {
-    functionName: 'divide'
+    functionName: 'divide',
+    symbol: '/'
   }
 });

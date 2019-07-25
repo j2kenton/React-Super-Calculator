@@ -2,7 +2,7 @@ import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT } from 'constants/action-types'
 import { calculateUpdatedValue } from 'utils/calculations';
 
 const initialState = {
-  output: '0',
+  output: 0,
   input: '',
   operator: 'add'
 };
