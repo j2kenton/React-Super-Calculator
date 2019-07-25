@@ -16,3 +16,5 @@ export const OPERATORS = Object.freeze({
     symbol: '/'
   }
 });
+
+export const VALID_INPUT_CHARS_REGEX = /^[0-9.]+$/;

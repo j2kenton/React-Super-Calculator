@@ -5,7 +5,7 @@ import {
   updateOutput as updateOutputAction,
   updateInput as updateInputAction
 } from 'common-actions';
-import { OPERATORS } from 'constants/operators';
+import { OPERATORS } from 'constants/numeric';
 
 const InputWrapper = styled.div`
   background-color: orange;

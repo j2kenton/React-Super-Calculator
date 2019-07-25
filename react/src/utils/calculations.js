@@ -1,4 +1,4 @@
-import { OPERATORS } from 'constants/operators';
+import { OPERATORS } from 'constants/numeric';
 import * as maths from './mathematics';
 
 export const calculateUpdatedValue = ({ currentValue, valueApplied, operator }) => {

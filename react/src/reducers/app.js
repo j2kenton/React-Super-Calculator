@@ -1,5 +1,6 @@
 import { SET_OUTPUT, UPDATE_OUTPUT, UPDATE_INPUT } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
+import { VALID_INPUT_CHARS_REGEX } from 'constants/numeric';
 
 const initialState = {
   output: 0,
@@ -28,6 +29,13 @@ export const app = (state = initialState, action) => {
       };
     }
     case UPDATE_INPUT: {
+      const userInput = action.payload;
+      const dotsInInput = userInput.match(/\./);
+      const isTooManyDots = !!dotsInInput && dotsInInput.length > 1;
+      const isAllCharsLegal = VALID_INPUT_CHARS_REGEX.test(userInput);
+      if (isTooManyDots || !isAllCharsLegal) {
+        return state;
+      }
       return {
         ...state,
         input: action.payload
