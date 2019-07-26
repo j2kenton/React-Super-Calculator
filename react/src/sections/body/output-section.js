@@ -6,6 +6,7 @@ import {
   resetForm as resetFormAction,
   undoUpdateOutput as undoUpdateOutputAction
 } from 'common-actions';
+import Button from 'components/button';
 
 const OutputWrapper = styled.div`
   height: 43px;
@@ -13,19 +14,6 @@ const OutputWrapper = styled.div`
 `;
 
 const OutputArea = styled.div`
-  height: 100%;
-`;
-
-const SignButton = styled.button`
-  font-size: 2rem;
-  width: 50%;
-  height: 100%;
-`;
-
-const UndoButton = styled.button`
-  vertical-align: top;
-  font-size: 2rem;
-  width: 50%;
   height: 100%;
 `;
 
@@ -42,14 +30,6 @@ const ToggleUndoWrapper = styled.div`
   display: inline-block;
   text-align: right;
   text-align: end;
-`;
-
-const ClearButton = styled.button`
-  background-color: grey;
-  color: white;
-  width: 100px;
-  height: 100%;
-  font-size: 1.3rem;
 `;
 
 const NumberArea = styled.div`
@@ -69,8 +49,6 @@ const NumberArea = styled.div`
   padding-left: 10px;
   padding-top: 5px;
 `;
-
-const SignSymbol = styled.span``;
 
 export const OutputSection = ({
   output,
@@ -102,16 +80,17 @@ export const OutputSection = ({
     <OutputWrapper>
       <OutputArea>
         <ToggleUndoWrapper>
-          <UndoButton onClick={e => onUndoClick(e)} disabled={previousOutputs.length === 0}>
-            ↶
-          </UndoButton>
-          <SignButton onClick={e => onToggleSign(e)}>
-            <SignSymbol>{output < 0 ? '-' : '+'}</SignSymbol>
-          </SignButton>
+          <Button
+            onClick={e => onUndoClick(e)}
+            disabled={previousOutputs.length === 0}
+            text={'↶'}
+            width={'50%'}
+          />
+          <Button onClick={e => onToggleSign(e)} text={output < 0 ? '-' : '+'} width={'50%'} />
         </ToggleUndoWrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
         <ButtonWrapper>
-          <ClearButton onClick={onClear}>clear</ClearButton>
+          <Button onClick={onClear} text={'clear'} inverted fontSize={'1.3rem'} />
         </ButtonWrapper>
       </OutputArea>
     </OutputWrapper>

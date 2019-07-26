@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { appendToInput as appendToInputAction } from 'common-actions';
+import Button from 'components/button';
 
 const ButtonsWrapper = styled.div`
   background-color: green;
@@ -15,15 +16,7 @@ const ButtonsWrapper = styled.div`
   margin-left: 100px;
 `;
 
-const NumberButton = styled.button`
-  background-color: grey;
-  flex: 1 0 33%;
-  padding: 1rem;
-  font-size: 2rem;
-  color: white;
-`;
-
-export const NumberButtonSection = ({ input, appendToInput, operator, onBlur, onButtonClick }) => {
+export const NumberButtonSection = ({ appendToInput, onButtonClick }) => {
   const onNumberButtonClick = (e, text) => {
     e.preventDefault();
     onButtonClick();
@@ -33,19 +26,21 @@ export const NumberButtonSection = ({ input, appendToInput, operator, onBlur, on
   return (
     <ButtonsWrapper>
       {['7', '8', '9', '4', '5', '6', '1', '2', '3', '-', '0', '.'].map(text => (
-        <NumberButton onClick={e => onNumberButtonClick(e, text)} key={text}>
-          {text}
-        </NumberButton>
+        <Button
+          onClick={e => onNumberButtonClick(e, text)}
+          key={text}
+          flex={'1 0 33%'}
+          inverted
+          padding={'1rem'}
+          text={text}
+        />
       ))}
     </ButtonsWrapper>
   );
 };
 
 NumberButtonSection.propTypes = {
-  input: PropTypes.string,
-  operator: PropTypes.string,
   appendToInput: PropTypes.func,
-  onBlur: PropTypes.func,
   onButtonClick: PropTypes.func
 };
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { OPERATORS } from 'constants/numeric';
 import { isInputUsable } from 'utils/tools';
+import Button from 'components/button';
 import styled from 'styled-components';
 import {
   updateOutput as updateOutputAction,
@@ -31,22 +32,6 @@ const ButtonsWrapper = styled.div`
   display: inline-block;
   vertical-align: top;
   height: 100%;
-`;
-
-const ApplyButton = styled.button`
-  font-size: 1.3rem;
-  background-color: grey;
-  color: white;
-  width: 100%;
-  height: 50%;
-`;
-
-const BackspaceButton = styled.button`
-  font-size: 1.3rem;
-  background-color: grey;
-  color: white;
-  width: 100%;
-  height: 50%;
 `;
 
 const InputArea = styled.div`
@@ -146,12 +131,22 @@ export const InputSection = ({
         <PreviewSection>{preview}</PreviewSection>
       </InputsWrapper>
       <ButtonsWrapper>
-        <BackspaceButton onClick={onBackspace} disabled={!input}>
-          ⇐
-        </BackspaceButton>
-        <ApplyButton onClick={onApply} disabled={!isInputUsable(input)}>
-          apply
-        </ApplyButton>
+        <Button
+          onClick={onBackspace}
+          disabled={!input}
+          text={'⇐'}
+          inverted
+          height={'50%'}
+          fontSize={'1.3rem'}
+        />
+        <Button
+          onClick={onApply}
+          disabled={!isInputUsable(input)}
+          text={'apply'}
+          inverted
+          height={'50%'}
+          fontSize={'1.3rem'}
+        />
       </ButtonsWrapper>
     </InputWrapper>
   );
