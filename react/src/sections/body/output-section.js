@@ -11,7 +11,7 @@ const OutputWrapper = styled.div`
 `;
 
 const OutputArea = styled.div`
-  background-color: yellow;
+  height: 43px;
 `;
 
 const SignButton = styled.button`
@@ -21,11 +21,13 @@ const SignButton = styled.button`
 
 const ButtonWrapper = styled.div`
   width: 100px;
+  height: 100%;
   display: inline-block;
 `;
 
 const SignWrapper = styled.div`
   width: 100px;
+  height: 100%;
   display: inline-block;
   text-align: right;
   text-align: end;
@@ -35,6 +37,7 @@ const ClearButton = styled.button`
   background-color: grey;
   color: white;
   width: 100px;
+  height: 100%;
   font-size: 1.5rem;
 `;
 

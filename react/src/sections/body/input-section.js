@@ -11,20 +11,33 @@ import {
 import OperatorControls from '../../components/operator-controls';
 
 const InputWrapper = styled.div`
-  background-color: orange;
+  height: 86px;
 `;
 
-const Row = styled.div`
-  height: 1.5rem;
+const InputsWrapper = styled.div`
+  width: 400px;
+  display: inline-block;
+  vertical-align: top;
+`;
+
+const ButtonsWrapper = styled.div`
+  width: 100px;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
 `;
 
 const ApplyButton = styled.button`
   background-color: grey;
+  width: 100%;
+  height: 50%;
 `;
 
 const BackspaceButton = styled.button`
   background-color: grey;
   color: white;
+  width: 100%;
+  height: 50%;
 `;
 
 const InputArea = styled.input.attrs({
@@ -38,7 +51,6 @@ const PreviewSection = styled.div`
   color: grey;
   float: left;
   width: 400px;
-
   min-height: 10px;
 `;
 
@@ -81,8 +93,8 @@ export const InputSection = ({
 
   return (
     <InputWrapper>
-      <Row>
-        <OperatorControls onButtonClick={onButtonClick} />
+      <OperatorControls onButtonClick={onButtonClick} />
+      <InputsWrapper>
         <InputArea
           name="inputArea"
           id="inputArea"
@@ -96,16 +108,16 @@ export const InputSection = ({
             }
           }}
         />
+        <PreviewSection>{preview}</PreviewSection>
+      </InputsWrapper>
+      <ButtonsWrapper>
         <BackspaceButton onClick={onBackspace} disabled={!input}>
           ⇐
         </BackspaceButton>
-      </Row>
-      <Row>
-        <PreviewSection>{preview}</PreviewSection>
         <ApplyButton onClick={onApply} disabled={!isInputUsable(input)}>
           apply
         </ApplyButton>
-      </Row>
+      </ButtonsWrapper>
     </InputWrapper>
   );
 };

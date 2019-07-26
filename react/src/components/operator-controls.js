@@ -7,9 +7,7 @@ import { setOperator as setOperatorAction } from 'common-actions';
 const OperatorsWrapper = styled.div`
   background-color: purple;
   width: 100px;
-  float: left;
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-block;
 `;
 
 const StyledButton = styled.button`
@@ -20,7 +18,8 @@ const StyledButton = styled.button`
       background: darkgrey;
       color: white;
     `}
-  flex: 1 0 50%;
+  width: 50%;
+  height: 50%;
   font-size: 2rem;
 `;
 
