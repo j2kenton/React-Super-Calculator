@@ -23,7 +23,7 @@ const MainSection = styled.main`
 
 const StyledHeader = styled.header`
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   color: grey;
 `;
 

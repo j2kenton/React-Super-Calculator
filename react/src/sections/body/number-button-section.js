@@ -5,7 +5,6 @@ import { appendToInput as appendToInputAction } from 'common-actions';
 
 const ButtonsWrapper = styled.div`
   background-color: green;
-  clear: both;
   display: flex;
   flex-wrap: wrap;
 

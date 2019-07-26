@@ -49,7 +49,7 @@ const ClearButton = styled.button`
   color: white;
   width: 100px;
   height: 100%;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 `;
 
 const NumberArea = styled.div`

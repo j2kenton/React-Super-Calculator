@@ -34,6 +34,7 @@ const ButtonsWrapper = styled.div`
 `;
 
 const ApplyButton = styled.button`
+  font-size: 1.3rem;
   background-color: grey;
   color: white;
   width: 100%;
@@ -41,6 +42,7 @@ const ApplyButton = styled.button`
 `;
 
 const BackspaceButton = styled.button`
+  font-size: 1.3rem;
   background-color: grey;
   color: white;
   width: 100%;
