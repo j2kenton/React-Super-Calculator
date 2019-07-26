@@ -6,15 +6,14 @@ import {
   TOGGLE_NEGATIVITY,
   APPEND_TO_INPUT,
   INPUT_REMOVE_LAST_CHAR,
-  RESET_FORM
+  RESET_FORM,
+  UNDO_UPDATE_OUTPUT
 } from 'constants/action-types';
 
 export function setOutput(output) {
   return {
     type: SET_OUTPUT,
-    payload: {
-      output
-    }
+    payload: output
   };
 }
 
@@ -60,5 +59,11 @@ export function inputRemoveLastChar() {
 export function resetForm() {
   return {
     type: RESET_FORM
+  };
+}
+
+export function undoUpdateOutput() {
+  return {
+    type: UNDO_UPDATE_OUTPUT
   };
 }

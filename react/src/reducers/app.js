@@ -6,13 +6,15 @@ import {
   TOGGLE_NEGATIVITY,
   APPEND_TO_INPUT,
   INPUT_REMOVE_LAST_CHAR,
-  RESET_FORM
+  RESET_FORM,
+  UNDO_UPDATE_OUTPUT
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 import { isInputValid, getUpdatedTempValues } from 'utils/tools';
 
 const initialState = {
   output: 0,
+  previousOutputs: [],
   preview: '',
   input: '',
   operator: 'add'
@@ -23,17 +25,20 @@ export const app = (state = initialState, action) => {
     case SET_OUTPUT: {
       return {
         ...state,
-        output: action.payload.output
+        output: action.payload,
+        previousOutputs: [...state.previousOutputs, state.output]
       };
     }
     case UPDATE_OUTPUT: {
+      const newOutput = calculateUpdatedValue({
+        currentValue: state.output,
+        valueApplied: state.input,
+        operator: state.operator
+      });
       return {
         ...state,
-        output: calculateUpdatedValue({
-          currentValue: state.output,
-          valueApplied: state.input,
-          operator: state.operator
-        }),
+        output: newOutput,
+        previousOutputs: [...state.previousOutputs, state.output],
         input: initialState.input,
         preview: initialState.preview
       };
@@ -72,13 +77,26 @@ export const app = (state = initialState, action) => {
     case TOGGLE_NEGATIVITY: {
       const newState = {
         ...state,
-        output: state.output * -1
+        output: state.output * -1,
+        previousOutputs: [...state.previousOutputs, state.output]
       };
       const newValues = getUpdatedTempValues(newState, state.input, initialState.preview);
       return { ...newState, ...newValues };
     }
     case RESET_FORM: {
       return { ...initialState };
+    }
+    case UNDO_UPDATE_OUTPUT: {
+      const { previousOutputs } = state;
+      if (previousOutputs.length === 0) {
+        return state;
+      }
+      const lastOutput = previousOutputs.pop();
+      return {
+        ...state,
+        output: lastOutput,
+        previousOutputs
+      };
     }
     default:
       return state;
