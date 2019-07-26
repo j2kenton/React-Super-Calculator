@@ -8,6 +8,7 @@ import {
 } from 'common-actions';
 import Button from 'components/button';
 import Wrapper from 'components/wrapper';
+import Input from 'components/input';
 
 const OutputWrapper = styled.div`
   height: ${props => props.theme.sizes.shortElementHeight}px;
@@ -58,16 +59,12 @@ export const OutputSection = ({
     resetForm();
   };
 
+  const isNoHistory = previousOutputs.length === 0;
   return (
     <OutputWrapper>
       <OutputArea>
         <Wrapper>
-          <Button
-            onClick={e => onUndoClick(e)}
-            disabled={previousOutputs.length === 0}
-            text={'↶'}
-            width={'50%'}
-          />
+          <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} width={'50%'} />
           <Button
             onClick={e => onToggleSign(e)}
             text={output < 0 ? '-' : '+'}
@@ -76,9 +73,15 @@ export const OutputSection = ({
             disabled={!output}
           />
         </Wrapper>
-        <NumberArea>{Math.abs(output)}</NumberArea>
+        {isNoHistory ? (
+          <Wrapper width={'400px'}>
+            <Input fullHeight />
+          </Wrapper>
+        ) : (
+          <NumberArea>{Math.abs(output)}</NumberArea>
+        )}
         <Wrapper>
-          <Button onClick={onClear} text={'✗'} inverted fontSize={'1.2rem'} />
+          <Button onClick={onClear} text={'✗'} inverted fontSize={'1.5rem'} />
         </Wrapper>
       </OutputArea>
     </OutputWrapper>

@@ -18,7 +18,7 @@ const initialState = {
   previousOutputs: [],
   preview: 'preview...',
   input: '',
-  operator: 'add'
+  operator: ''
 };
 
 export const app = (state = initialState, action) => {
@@ -45,10 +45,18 @@ export const app = (state = initialState, action) => {
       };
     }
     case SET_OUTPUT_AND_OPERATOR: {
+      const isFirstInput = state.previousOutputs.length === 0;
+      const output = isFirstInput
+        ? state.input
+        : calculateUpdatedValue({
+            currentValue: state.output,
+            valueApplied: state.input,
+            operator: state.operator
+          });
       return {
         ...state,
+        output,
         operator: action.payload,
-        output: state.input,
         previousOutputs: [...state.previousOutputs, state.output],
         input: initialState.input,
         preview: initialState.preview

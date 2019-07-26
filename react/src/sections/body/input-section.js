@@ -1,7 +1,5 @@
-import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { OPERATORS } from 'constants/numeric';
 import { isInputUsable } from 'utils/tools';
 import Button from 'components/button';
 import styled from 'styled-components';
@@ -13,6 +11,7 @@ import {
   setOutputAndOperator as setOutputAndOperatorAction
 } from 'common-actions';
 import OperatorControls from 'components/operator-controls';
+import Input from 'components/input';
 
 const InputWrapper = styled.div`
   height: ${props => props.theme.sizes.shortElementHeight * 2}px;
@@ -24,25 +23,6 @@ const InputsWrapper = styled(Wrapper)`
       props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
     width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
   }
-`;
-
-const InputArea = styled.div`
-  width: ${props => props.theme.sizes.wideColumn}px;
-  @media (max-width: ${props =>
-      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
-    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
-  }
-  height: 50%;
-`;
-
-const InputField = styled.input.attrs({
-  type: 'text'
-})`
-  height: 100%;
-  width: 100%;
-  padding: 0 10px;
-  box-sizing: border-box;
-  font-size: 1.3rem;
 `;
 
 const PreviewSection = styled(Wrapper)`
@@ -62,17 +42,11 @@ export const InputSection = ({
   preview,
   input,
   updateOutput,
-  updateInput,
-  onBlur,
   onButtonClick,
   inputRemoveLastChar,
-  setOutputAndOperator
+  onBlur,
+  previousOutputs = []
 }) => {
-  const onInputChange = e => {
-    e.preventDefault();
-    updateInput(e.target.value);
-  };
-
   const onApply = e => {
     e.preventDefault();
     onButtonClick();
@@ -89,39 +63,17 @@ export const InputSection = ({
     }
   };
 
-  const ref = useRef();
-  useEffect(() => {
-    if (ref && ref.current) {
-      ref.current.focus();
-    }
-  }, []);
-
-  const handleKeyPress = e => {
-    const matchingOperator = Object.entries(OPERATORS).find(
-      ([, value]) => value.keyboardChar === e.key
-    );
-    if (matchingOperator && isInputUsable(input)) {
-      setOutputAndOperator(matchingOperator[0]);
-    } else if (e.key === 'Enter') {
-      onApply(e);
-    }
-  };
+  const isNoHistory = previousOutputs.length === 0;
 
   return (
     <InputWrapper>
       <OperatorControls onButtonClick={onButtonClick} />
       <InputsWrapper>
-        <InputArea>
-          <InputField
-            name="inputArea"
-            id="inputArea"
-            onChange={onInputChange}
-            value={input}
-            onBlur={onBlur}
-            ref={ref}
-            onKeyPress={handleKeyPress}
-          />
-        </InputArea>
+        {isNoHistory ? (
+          <Wrapper>-</Wrapper>
+        ) : (
+          <Input onButtonClick={onButtonClick} onBlur={onBlur} />
+        )}
         <PreviewSection>{preview}</PreviewSection>
       </InputsWrapper>
       <Wrapper>
@@ -142,17 +94,17 @@ InputSection.propTypes = {
   preview: PropTypes.string,
   input: PropTypes.string,
   updateOutput: PropTypes.func,
-  updateInput: PropTypes.func,
   onBlur: PropTypes.func,
   onButtonClick: PropTypes.func,
   inputRemoveLastChar: PropTypes.func,
-  setOutputAndOperator: PropTypes.func
+  previousOutputs: PropTypes.array
 };
 
 const mapStateToProps = ({ app }) => ({
   preview: app.preview,
   input: app.input,
-  operator: app.operator
+  operator: app.operator,
+  previousOutputs: app.previousOutputs
 });
 
 export default connect(
