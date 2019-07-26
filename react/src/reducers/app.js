@@ -31,28 +31,23 @@ export const app = (state = initialState, action) => {
       };
     }
     case UPDATE_OUTPUT: {
-      const newOutput = calculateUpdatedValue({
-        currentValue: state.output,
-        valueApplied: state.input,
-        operator: state.operator
-      });
+      let { output } = state;
+      const { preview, input } = state;
+      if (!isNaN(preview)) {
+        output = +preview;
+      } else if (input) {
+        output = +input;
+      }
       return {
         ...state,
-        output: newOutput,
+        output,
         previousOutputs: [...state.previousOutputs, state.output],
         input: initialState.input,
         preview: initialState.preview
       };
     }
     case SET_OUTPUT_AND_OPERATOR: {
-      const isFirstInput = state.previousOutputs.length === 0;
-      const output = isFirstInput
-        ? state.input
-        : calculateUpdatedValue({
-            currentValue: state.output,
-            valueApplied: state.input,
-            operator: state.operator
-          });
+      const output = isNaN(state.preview) ? +state.input : +state.preview;
       return {
         ...state,
         output,
