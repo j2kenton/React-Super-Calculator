@@ -7,7 +7,8 @@ import {
   APPEND_TO_INPUT,
   INPUT_REMOVE_LAST_CHAR,
   RESET_FORM,
-  UNDO_UPDATE_OUTPUT
+  UNDO_UPDATE_OUTPUT,
+  SET_OUTPUT_AND_OPERATOR
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 import { isInputValid, getUpdatedTempValues } from 'utils/tools';
@@ -38,6 +39,16 @@ export const app = (state = initialState, action) => {
       return {
         ...state,
         output: newOutput,
+        previousOutputs: [...state.previousOutputs, state.output],
+        input: initialState.input,
+        preview: initialState.preview
+      };
+    }
+    case SET_OUTPUT_AND_OPERATOR: {
+      return {
+        ...state,
+        operator: action.payload,
+        output: state.input,
         previousOutputs: [...state.previousOutputs, state.output],
         input: initialState.input,
         preview: initialState.preview

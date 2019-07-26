@@ -7,7 +7,8 @@ import {
   APPEND_TO_INPUT,
   INPUT_REMOVE_LAST_CHAR,
   RESET_FORM,
-  UNDO_UPDATE_OUTPUT
+  UNDO_UPDATE_OUTPUT,
+  SET_OUTPUT_AND_OPERATOR
 } from 'constants/action-types';
 
 export function setOutput(output) {
@@ -65,5 +66,12 @@ export function resetForm() {
 export function undoUpdateOutput() {
   return {
     type: UNDO_UPDATE_OUTPUT
+  };
+}
+
+export function setOutputAndOperator(operator) {
+  return {
+    type: SET_OUTPUT_AND_OPERATOR,
+    payload: operator
   };
 }

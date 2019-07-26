@@ -1,12 +1,14 @@
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { OPERATORS } from 'constants/numeric';
 import { isInputUsable } from 'utils/tools';
 import styled from 'styled-components';
 import {
   updateOutput as updateOutputAction,
   updateInput as updateInputAction,
-  inputRemoveLastChar as inputRemoveLastCharAction
+  inputRemoveLastChar as inputRemoveLastCharAction,
+  setOutputAndOperator as setOutputAndOperatorAction
 } from 'common-actions';
 import OperatorControls from '../../components/operator-controls';
 
@@ -69,7 +71,8 @@ export const InputSection = ({
   updateInput,
   onBlur,
   onButtonClick,
-  inputRemoveLastChar
+  inputRemoveLastChar,
+  setOutputAndOperator
 }) => {
   const onInputChange = e => {
     e.preventDefault();
@@ -99,6 +102,17 @@ export const InputSection = ({
     }
   }, []);
 
+  const handleKeyPress = e => {
+    const matchingOperator = Object.entries(OPERATORS).find(
+      ([, value]) => value.keyboardChar === e.key
+    );
+    if (matchingOperator && isInputUsable(input)) {
+      setOutputAndOperator(matchingOperator[0]);
+    } else if (e.key === 'Enter') {
+      onApply(e);
+    }
+  };
+
   return (
     <InputWrapper>
       <OperatorControls onButtonClick={onButtonClick} />
@@ -111,11 +125,7 @@ export const InputSection = ({
             value={input}
             onBlur={onBlur}
             ref={ref}
-            onKeyPress={e => {
-              if (e.key === 'Enter') {
-                onApply(e);
-              }
-            }}
+            onKeyPress={handleKeyPress}
           />
         </InputArea>
         <PreviewSection>{preview}</PreviewSection>
@@ -139,7 +149,8 @@ InputSection.propTypes = {
   updateInput: PropTypes.func,
   onBlur: PropTypes.func,
   onButtonClick: PropTypes.func,
-  inputRemoveLastChar: PropTypes.func
+  inputRemoveLastChar: PropTypes.func,
+  setOutputAndOperator: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({
@@ -153,6 +164,7 @@ export default connect(
   {
     updateOutput: updateOutputAction,
     updateInput: updateInputAction,
-    inputRemoveLastChar: inputRemoveLastCharAction
+    inputRemoveLastChar: inputRemoveLastCharAction,
+    setOutputAndOperator: setOutputAndOperatorAction
   }
 )(InputSection);
