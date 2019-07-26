@@ -5,6 +5,7 @@ import { OPERATORS } from 'constants/numeric';
 import { isInputUsable } from 'utils/tools';
 import Button from 'components/button';
 import styled from 'styled-components';
+import Wrapper from 'components/wrapper';
 import {
   updateOutput as updateOutputAction,
   updateInput as updateInputAction,
@@ -17,21 +18,11 @@ const InputWrapper = styled.div`
   height: 86px;
 `;
 
-const InputsWrapper = styled.div`
+const InputsWrapper = styled(Wrapper)`
   width: 400px;
   @media (max-width: 600px) {
     width: calc(100vw - 200px);
   }
-  height: 100%;
-  display: inline-block;
-  vertical-align: top;
-`;
-
-const ButtonsWrapper = styled.div`
-  width: 100px;
-  display: inline-block;
-  vertical-align: top;
-  height: 100%;
 `;
 
 const InputArea = styled.div`
@@ -51,16 +42,14 @@ const InputField = styled.input.attrs({
   box-sizing: border-box;
 `;
 
-const PreviewSection = styled.div`
+const PreviewSection = styled(Wrapper)`
   color: grey;
-
   width: 400px;
   @media (max-width: 600px) {
     width: calc(100vw - 200px);
   }
   height: 50%;
   padding: 10px;
-  box-sizing: border-box;
   background-color: whitesmoke;
 `;
 
@@ -130,7 +119,7 @@ export const InputSection = ({
         </InputArea>
         <PreviewSection>{preview}</PreviewSection>
       </InputsWrapper>
-      <ButtonsWrapper>
+      <Wrapper>
         <Button
           onClick={onBackspace}
           disabled={!input}
@@ -147,7 +136,7 @@ export const InputSection = ({
           height={'50%'}
           fontSize={'1.3rem'}
         />
-      </ButtonsWrapper>
+      </Wrapper>
     </InputWrapper>
   );
 };

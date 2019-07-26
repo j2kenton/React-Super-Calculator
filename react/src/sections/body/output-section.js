@@ -7,6 +7,7 @@ import {
   undoUpdateOutput as undoUpdateOutputAction
 } from 'common-actions';
 import Button from 'components/button';
+import Wrapper from 'components/wrapper';
 
 const OutputWrapper = styled.div`
   height: 43px;
@@ -17,35 +18,15 @@ const OutputArea = styled.div`
   height: 100%;
 `;
 
-const ButtonWrapper = styled.div`
-  width: 100px;
-  height: 100%;
-  display: inline-block;
-  vertical-align: top;
-`;
-
-const ToggleUndoWrapper = styled.div`
-  width: 100px;
-  height: 100%;
-  display: inline-block;
-  text-align: right;
-  text-align: end;
-`;
-
-const NumberArea = styled.div`
+const NumberArea = styled(Wrapper)`
   background-color: grey;
   color: white;
   font-weight: bold;
-
   width: 400px;
   @media (max-width: 600px) {
     width: calc(100vw - 200px);
   }
-  display: inline-block;
   font-size: 2rem;
-  height: 100%;
-  vertical-align: top;
-  box-sizing: border-box;
   padding-left: 10px;
   padding-top: 5px;
 `;
@@ -79,7 +60,7 @@ export const OutputSection = ({
   return (
     <OutputWrapper>
       <OutputArea>
-        <ToggleUndoWrapper>
+        <Wrapper>
           <Button
             onClick={e => onUndoClick(e)}
             disabled={previousOutputs.length === 0}
@@ -87,11 +68,11 @@ export const OutputSection = ({
             width={'50%'}
           />
           <Button onClick={e => onToggleSign(e)} text={output < 0 ? '-' : '+'} width={'50%'} />
-        </ToggleUndoWrapper>
+        </Wrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
-        <ButtonWrapper>
+        <Wrapper>
           <Button onClick={onClear} text={'clear'} inverted fontSize={'1.3rem'} />
-        </ButtonWrapper>
+        </Wrapper>
       </OutputArea>
     </OutputWrapper>
   );
