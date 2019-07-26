@@ -12,7 +12,7 @@ const StyledButton = styled.button`
     props.disabled ? props.theme.colors.disabledBackground : props.background};
   padding: ${props => props.padding};
   flex: ${props => props.flex};
-  cursor: ${props => props.disabled && 'not-allowed'};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   ${props =>
     !props.disabled &&
     props.selected &&
@@ -25,6 +25,13 @@ const StyledButton = styled.button`
     props.inverted &&
     css`
       background: ${props.theme.colors.inverted.buttonBackground};
+      color: ${props.theme.colors.white};
+    `}
+  ${props =>
+    !props.disabled &&
+    props.pale &&
+    css`
+      background: ${props.theme.colors.standardGrey};
       color: ${props.theme.colors.white};
     `}
 `;

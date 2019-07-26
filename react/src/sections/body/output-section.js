@@ -10,8 +10,8 @@ import Button from 'components/button';
 import Wrapper from 'components/wrapper';
 
 const OutputWrapper = styled.div`
-  height: 43px;
-  margin-bottom: 5px;
+  height: ${props => props.theme.sizes.shortElementHeight}px;
+  margin-bottom: 8px;
 `;
 
 const OutputArea = styled.div`
@@ -68,7 +68,13 @@ export const OutputSection = ({
             text={'↶'}
             width={'50%'}
           />
-          <Button onClick={e => onToggleSign(e)} text={output < 0 ? '-' : '+'} width={'50%'} />
+          <Button
+            onClick={e => onToggleSign(e)}
+            text={output < 0 ? '-' : '+'}
+            width={'50%'}
+            pale
+            disabled={!output}
+          />
         </Wrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
         <Wrapper>

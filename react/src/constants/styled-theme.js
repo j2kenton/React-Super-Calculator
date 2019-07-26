@@ -1,5 +1,5 @@
 export const theme = {
-  sizes: { narrowColumn: 100, wideColumn: 400 },
+  sizes: { narrowColumn: 100, wideColumn: 400, shortElementHeight: 43 },
 
   colors: {
     white: '#ffffff',

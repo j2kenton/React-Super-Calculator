@@ -15,7 +15,7 @@ import {
 import OperatorControls from 'components/operator-controls';
 
 const InputWrapper = styled.div`
-  height: 86px;
+  height: ${props => props.theme.sizes.shortElementHeight * 2}px;
 `;
 
 const InputsWrapper = styled(Wrapper)`
