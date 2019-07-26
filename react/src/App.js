@@ -24,13 +24,13 @@ const MainSection = styled.main`
 const StyledHeader = styled.header`
   text-align: center;
   margin-bottom: 25px;
-  color: grey;
+  color: ${props => props.theme.colors.alternativeGrey};
 `;
 
 const StyledFooter = styled.footer`
   text-align: center;
   margin-top: 40px;
-  color: grey;
+  color: ${props => props.theme.colors.alternativeGrey};
 `;
 
 function App() {

@@ -11,12 +11,12 @@ import {
   SET_OUTPUT_AND_OPERATOR
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
-import { isInputValid, getUpdatedTempValues } from 'utils/tools';
+import { getUpdatedTempValues } from 'utils/tools';
 
 const initialState = {
   output: 0,
   previousOutputs: [],
-  preview: '',
+  preview: 'preview...',
   input: '',
   operator: 'add'
 };

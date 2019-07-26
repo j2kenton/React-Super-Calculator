@@ -40,9 +40,11 @@ const InputField = styled.input.attrs({
   width: 100%;
   padding: 0 10px;
   box-sizing: border-box;
+  font-size: 1.3rem;
 `;
 
 const PreviewSection = styled(Wrapper)`
+  font-size: 1.3rem;
   color: ${props => props.theme.colors.standardGrey};
   width: 400px;
   @media (max-width: 600px) {
@@ -123,18 +125,18 @@ export const InputSection = ({
         <Button
           onClick={onBackspace}
           disabled={!input}
-          text={'⇐'}
+          text={'⇐ delete'}
           inverted
           height={'50%'}
-          fontSize={'1.3rem'}
+          fontSize={'1.2rem'}
         />
         <Button
           onClick={onApply}
           disabled={!isInputUsable(input)}
-          text={'apply'}
+          text={'✓ apply'}
           inverted
           height={'50%'}
-          fontSize={'1.3rem'}
+          fontSize={'1.2rem'}
         />
       </Wrapper>
     </InputWrapper>

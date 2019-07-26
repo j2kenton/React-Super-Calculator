@@ -8,6 +8,7 @@ export const theme = {
     standardGrey: '#808080',
     darkGrey: '#333333',
     paleBackgroundColor: '#f5f5f5',
+    alternativeGrey: '#bbbbbb',
 
     inverted: {
       buttonBackground: '#555555'

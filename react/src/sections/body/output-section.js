@@ -11,7 +11,7 @@ import Wrapper from 'components/wrapper';
 
 const OutputWrapper = styled.div`
   height: 43px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const OutputArea = styled.div`
@@ -71,7 +71,7 @@ export const OutputSection = ({
         </Wrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
         <Wrapper>
-          <Button onClick={onClear} text={'clear'} inverted fontSize={'1.3rem'} />
+          <Button onClick={onClear} text={'✗ clear'} inverted fontSize={'1.2rem'} />
         </Wrapper>
       </OutputArea>
     </OutputWrapper>
