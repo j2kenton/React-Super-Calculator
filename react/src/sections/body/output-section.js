@@ -16,6 +16,7 @@ const OutputArea = styled.div`
 
 const SignButton = styled.button`
   font-size: 2rem;
+  width: 50px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -46,9 +47,7 @@ const NumberArea = styled.div`
   font-size: 2rem;
 `;
 
-const SignSymbol = styled.span`
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
-`;
+const SignSymbol = styled.span``;
 
 export const OutputSection = ({ output, toggleOutputNegativity, onButtonClick, resetForm }) => {
   const onToggleSign = e => {
@@ -68,7 +67,7 @@ export const OutputSection = ({ output, toggleOutputNegativity, onButtonClick, r
       <OutputArea>
         <SignWrapper>
           <SignButton onClick={e => onToggleSign(e)}>
-            <SignSymbol visible={output < 0}>-</SignSymbol>
+            <SignSymbol>{output < 0 ? '-' : '+'}</SignSymbol>
           </SignButton>
         </SignWrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
