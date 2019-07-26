@@ -23,6 +23,7 @@ const SignButton = styled.button`
 `;
 
 const UndoButton = styled.button`
+  vertical-align: top;
   font-size: 2rem;
   width: 50%;
   height: 100%;
