@@ -17,7 +17,7 @@ const StyledButton = styled.button`
     !props.disabled &&
     props.selected &&
     css`
-      background: ${props.theme.colors.buttonBackground};
+      background: ${props.theme.colors.darkGrey};
       color: ${props.theme.colors.white};
     `}
   ${props =>

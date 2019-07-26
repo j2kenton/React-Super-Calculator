@@ -6,6 +6,7 @@ export const theme = {
     disabledBackground: '#bbbbbb',
     buttonTextColor: '#444444',
     standardGrey: '#808080',
+    darkGrey: '#333333',
     paleBackgroundColor: '#f5f5f5',
 
     inverted: {
