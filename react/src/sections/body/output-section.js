@@ -43,9 +43,7 @@ export const OutputSection = ({ output, toggleOutputNegativity, onButtonClick, r
   const onClear = e => {
     e.preventDefault();
     onButtonClick();
-    if (output) {
-      resetForm();
-    }
+    resetForm();
   };
 
   return (
@@ -55,9 +53,7 @@ export const OutputSection = ({ output, toggleOutputNegativity, onButtonClick, r
           <SignSymbol visible={output < 0}>-</SignSymbol>
         </SignButton>
         <NumberArea>{Math.abs(output)}</NumberArea>
-        <ClearButton onClick={onClear} disabled={!output}>
-          clear
-        </ClearButton>
+        <ClearButton onClick={onClear}>clear</ClearButton>
       </OutputArea>
     </OutputWrapper>
   );
