@@ -1,4 +1,4 @@
-import { VALID_INPUT_CHARS_REGEX } from 'constants/numeric';
+import { VALID_INPUT_CHARS_REGEX, USABLE_INPUT_REGEX } from 'constants/numeric';
 import { calculateUpdatedValue } from 'utils/calculations';
 
 export const restoreLastFocus = lastBlured => {
@@ -15,17 +15,21 @@ export const isInputValid = inputString => {
   return isAllCharsLegal && !isTooManyDots;
 };
 
+export const isInputUsable = inputString => USABLE_INPUT_REGEX.test(inputString);
+
 export const getUpdatedTempValues = ({ input, output, operator }, newInput, defaultPreview) => {
   const isInputTextValid = isInputValid(newInput);
-  const preview = isInputTextValid
+  const inputApplied = isInputTextValid ? newInput : input;
+  const isAppliedInputUsable = isInputUsable(inputApplied);
+  const preview = isAppliedInputUsable
     ? calculateUpdatedValue({
         currentValue: output,
-        valueApplied: newInput,
+        valueApplied: inputApplied,
         operator
       })
     : defaultPreview;
   return {
     preview: `${preview}`,
-    input: isInputTextValid ? newInput : input
+    input: inputApplied
   };
 };

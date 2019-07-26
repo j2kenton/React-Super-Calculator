@@ -18,3 +18,5 @@ export const OPERATORS = Object.freeze({
 });
 
 export const VALID_INPUT_CHARS_REGEX = /^-?[0-9.]*$/;
+
+export const USABLE_INPUT_REGEX = /^-?[0-9]*\.?[0-9]+$/;

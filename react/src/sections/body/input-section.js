@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { isInputUsable } from 'utils/tools';
 import styled from 'styled-components';
 import {
   updateOutput as updateOutputAction,
@@ -99,7 +100,7 @@ export const InputSection = ({
       </Row>
       <Row>
         <PreviewSection>{preview}</PreviewSection>
-        <ApplyButton onClick={onApply} disabled={!input}>
+        <ApplyButton onClick={onApply} disabled={!isInputUsable(input)}>
           apply
         </ApplyButton>
       </Row>
