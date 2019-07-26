@@ -26,7 +26,7 @@ const StyledHeader = styled.header`
 
 const StyledFooter = styled.footer`
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
   color: grey;
 `;
 

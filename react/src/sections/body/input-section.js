@@ -32,6 +32,7 @@ const ButtonsWrapper = styled.div`
 
 const ApplyButton = styled.button`
   background-color: grey;
+  color: white;
   width: 100%;
   height: 50%;
 `;
@@ -62,6 +63,8 @@ const PreviewSection = styled.div`
   width: 400px;
   height: 50%;
   padding: 10px;
+  box-sizing: border-box;
+  background-color: whitesmoke;
 `;
 
 export const InputSection = ({
