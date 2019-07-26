@@ -6,15 +6,15 @@ import Button from 'components/button';
 import { NUMBER_BUTTONS } from 'constants/numeric';
 
 const ButtonsWrapper = styled.div`
-  background-color: green;
   display: flex;
   flex-wrap: wrap;
 
-  width: 400px;
-  @media (max-width: 600px) {
-    width: calc(100vw - 200px);
+  width: ${props => props.theme.sizes.wideColumn}px;
+  @media (max-width: ${props =>
+      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
+    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
   }
-  margin-left: 100px;
+  margin-left: ${props => props.theme.sizes.narrowColumn}px;
 `;
 
 export const NumberButtonSection = ({ appendToInput, onButtonClick }) => {

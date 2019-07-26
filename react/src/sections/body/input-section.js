@@ -19,16 +19,18 @@ const InputWrapper = styled.div`
 `;
 
 const InputsWrapper = styled(Wrapper)`
-  width: 400px;
-  @media (max-width: 600px) {
-    width: calc(100vw - 200px);
+  width: ${props => props.theme.sizes.wideColumn}px;
+  @media (max-width: ${props =>
+      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
+    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
   }
 `;
 
 const InputArea = styled.div`
-  width: 400px;
-  @media (max-width: 600px) {
-    width: calc(100vw - 200px);
+  width: ${props => props.theme.sizes.wideColumn}px;
+  @media (max-width: ${props =>
+      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
+    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
   }
   height: 50%;
 `;
@@ -46,13 +48,14 @@ const InputField = styled.input.attrs({
 const PreviewSection = styled(Wrapper)`
   font-size: 1.3rem;
   color: ${props => props.theme.colors.standardGrey};
-  width: 400px;
-  @media (max-width: 600px) {
-    width: calc(100vw - 200px);
+  width: ${props => props.theme.sizes.wideColumn}px;
+  @media (max-width: ${props =>
+      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
+    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
   }
   height: 50%;
   padding: 10px;
-  background-color: ${props => props.theme.colors.paleBackgroundColor};
+  background-color: ${props => props.theme.colors.paleBackground};
 `;
 
 export const InputSection = ({

@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const StyledButton = styled.button`
   box-sizing: border-box;
   vertical-align: top;
-  color: ${props => !props.disabled && (props.color || props.theme.colors.buttonTextColor)};
+  color: ${props => !props.disabled && (props.color || props.theme.colors.buttonText)};
   width: ${props => props.width || '100%'};
   height: ${props => props.height || '100%'};
   font-size: ${props => props.fontSize || '2rem'};

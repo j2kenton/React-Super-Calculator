@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   display: inline-block;
   box-sizing: border-box;
   vertical-align: top;
   color: ${props => props.color};
-  width: ${props => props.width || '100px'};
+  width: ${props => props.width || props.theme.sizes.narrowColumn}px;
   height: ${props => props.height || '100%'};
   font-size: ${props => props.fontSize};
   background: ${props => props.background};

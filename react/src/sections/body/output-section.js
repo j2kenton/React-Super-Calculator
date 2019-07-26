@@ -22,11 +22,12 @@ const NumberArea = styled(Wrapper)`
   background-color: ${props => props.theme.colors.standardGrey};
   color: ${props => props.theme.colors.white};
   font-weight: bold;
-  width: 400px;
-  @media (max-width: 600px) {
-    width: calc(100vw - 200px);
+  width: ${props => props.theme.sizes.wideColumn}px;
+  @media (max-width: ${props =>
+      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
+    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
   }
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding-left: 10px;
   padding-top: 5px;
 `;

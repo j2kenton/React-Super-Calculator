@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { OPERATORS } from 'constants/numeric';
 import { setOperator as setOperatorAction } from 'common-actions';
 import Button from 'components/button';
 
 const OperatorsWrapper = styled.div`
-  background-color: purple;
-  width: 100px;
+  width: ${props => props.theme.sizes.narrowColumn}px;
   display: inline-block;
 `;
 
-export const OperatorControls = ({ setOperator, operator, onButtonClick, selected }) => {
+export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
   const onOperatorSelection = operatorKey => {
     onButtonClick();
     setOperator(operatorKey);
@@ -36,8 +35,7 @@ export const OperatorControls = ({ setOperator, operator, onButtonClick, selecte
 OperatorControls.propTypes = {
   operator: PropTypes.string,
   setOperator: PropTypes.func,
-  onButtonClick: PropTypes.func,
-  selected: PropTypes.bool
+  onButtonClick: PropTypes.func
 };
 
 const mapStateToProps = ({ app }) => ({

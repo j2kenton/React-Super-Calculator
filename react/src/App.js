@@ -3,7 +3,7 @@ import Body from 'sections/body';
 import styled from 'styled-components';
 
 const FullPage = styled.div`
-  background-color: black;
+  background-color: ${props => props.theme.colors.black};
   position: absolute;
   top: 0;
   left: 0;
@@ -12,8 +12,9 @@ const FullPage = styled.div`
 `;
 
 const MainSection = styled.main`
-  width: 600px;
-  @media (max-width: 600px) {
+  width: ${props => props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px;
+  @media (max-width: ${props =>
+      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
     width: 100vw;
   }
   margin-left: 50%;
