@@ -43,14 +43,14 @@ const InputField = styled.input.attrs({
 `;
 
 const PreviewSection = styled(Wrapper)`
-  color: grey;
+  color: ${props => props.theme.colors.standardGrey};
   width: 400px;
   @media (max-width: 600px) {
     width: calc(100vw - 200px);
   }
   height: 50%;
   padding: 10px;
-  background-color: whitesmoke;
+  background-color: ${props => props.theme.colors.paleBackgroundColor};
 `;
 
 export const InputSection = ({

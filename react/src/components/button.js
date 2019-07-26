@@ -4,11 +4,12 @@ import styled, { css } from 'styled-components';
 const StyledButton = styled.button`
   box-sizing: border-box;
   vertical-align: top;
-  color: ${props => !props.disabled && (props.color || '#444444')};
+  color: ${props => !props.disabled && (props.color || props.theme.colors.buttonTextColor)};
   width: ${props => props.width || '100%'};
   height: ${props => props.height || '100%'};
   font-size: ${props => props.fontSize || '2rem'};
-  background: ${props => (props.disabled ? '#bbbbbb' : props.background)};
+  background: ${props =>
+    props.disabled ? props.theme.colors.disabledBackground : props.background};
   padding: ${props => props.padding};
   flex: ${props => props.flex};
   cursor: ${props => props.disabled && 'not-allowed'};
@@ -16,15 +17,15 @@ const StyledButton = styled.button`
     !props.disabled &&
     props.selected &&
     css`
-      background: '#a9a9a9';
-      color: #ffffff;
+      background: ${props.theme.colors.buttonBackground};
+      color: ${props.theme.colors.white};
     `}
   ${props =>
     !props.disabled &&
     props.inverted &&
     css`
-      background: #555555;
-      color: #ffffff;
+      background: ${props.theme.colors.inverted.buttonBackground};
+      color: ${props.theme.colors.white};
     `}
 `;
 

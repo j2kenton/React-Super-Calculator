@@ -19,8 +19,8 @@ const OutputArea = styled.div`
 `;
 
 const NumberArea = styled(Wrapper)`
-  background-color: grey;
-  color: white;
+  background-color: ${props => props.theme.colors.standardGrey};
+  color: ${props => props.theme.colors.white};
   font-weight: bold;
   width: 400px;
   @media (max-width: 600px) {
