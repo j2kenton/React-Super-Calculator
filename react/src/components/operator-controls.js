@@ -1,20 +1,27 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { OPERATORS } from 'constants/numeric';
 import { setOperator as setOperatorAction } from 'common-actions';
 
 const OperatorsWrapper = styled.div`
   background-color: purple;
-  left: 100px;
+  width: 100px;
   float: left;
   display: flex;
   flex-wrap: wrap;
 `;
 
 const StyledButton = styled.button`
-  color: ${props => (props.selected ? 'red' : 'grey')};
+  color: darkgrey;
+  ${props =>
+    props.selected &&
+    css`
+      background: darkgrey;
+      color: white;
+    `}
   flex: 1 0 50%;
+  font-size: 2rem;
 `;
 
 export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {

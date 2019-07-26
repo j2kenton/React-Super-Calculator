@@ -8,13 +8,16 @@ const ButtonsWrapper = styled.div`
   clear: both;
   display: flex;
   flex-wrap: wrap;
-  width: 200px;
+  width: 400px;
   margin-left: 100px;
 `;
 
 const NumberButton = styled.button`
   background-color: grey;
   flex: 1 0 33%;
+  padding: 1rem;
+  font-size: 2rem;
+  color: white;
 `;
 
 export const NumberButtonSection = ({ input, appendToInput, operator, onBlur, onButtonClick }) => {

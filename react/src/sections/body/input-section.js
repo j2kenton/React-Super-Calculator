@@ -15,7 +15,7 @@ const InputWrapper = styled.div`
 `;
 
 const Row = styled.div`
-  border: 1px solid black;
+  height: 1.5rem;
 `;
 
 const ApplyButton = styled.button`
@@ -31,12 +31,14 @@ const InputArea = styled.input.attrs({
   type: 'text'
 })`
   background-color: green;
+  width: 400px;
 `;
 
 const PreviewSection = styled.div`
   color: grey;
   float: left;
-  min-width: 100px;
+  width: 400px;
+
   min-height: 10px;
 `;
 

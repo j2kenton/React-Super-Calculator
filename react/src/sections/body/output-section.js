@@ -15,18 +15,35 @@ const OutputArea = styled.div`
 `;
 
 const SignButton = styled.button`
-  background-color: white;
+  font-size: 2rem;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 100px;
+  display: inline-block;
+`;
+
+const SignWrapper = styled.div`
+  width: 100px;
+  display: inline-block;
+  text-align: right;
+  text-align: end;
 `;
 
 const ClearButton = styled.button`
   background-color: grey;
   color: white;
+  width: 100px;
+  font-size: 1.5rem;
 `;
 
-const NumberArea = styled.span`
+const NumberArea = styled.div`
   background-color: grey;
   color: white;
   font-weight: bold;
+  width: 400px;
+  display: inline-block;
+  font-size: 2rem;
 `;
 
 const SignSymbol = styled.span`
@@ -49,11 +66,15 @@ export const OutputSection = ({ output, toggleOutputNegativity, onButtonClick, r
   return (
     <OutputWrapper>
       <OutputArea>
-        <SignButton onClick={e => onToggleSign(e)}>
-          <SignSymbol visible={output < 0}>-</SignSymbol>
-        </SignButton>
+        <SignWrapper>
+          <SignButton onClick={e => onToggleSign(e)}>
+            <SignSymbol visible={output < 0}>-</SignSymbol>
+          </SignButton>
+        </SignWrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
-        <ClearButton onClick={onClear}>clear</ClearButton>
+        <ButtonWrapper>
+          <ClearButton onClick={onClear}>clear</ClearButton>
+        </ButtonWrapper>
       </OutputArea>
     </OutputWrapper>
   );

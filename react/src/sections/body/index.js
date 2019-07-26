@@ -5,7 +5,7 @@ import OutputSection from './output-section';
 import InputSection from './input-section';
 import NumberButtonSection from './number-button-section';
 
-const StyledSection = styled.section`
+const BodySection = styled.section`
   background-color: pink;
 `;
 
@@ -17,11 +17,11 @@ export const Body = () => {
   };
 
   return (
-    <StyledSection>
+    <BodySection>
       <OutputSection onButtonClick={() => restoreLastFocus(lastBlured)} />
       <InputSection onBlur={onBlur} onButtonClick={() => restoreLastFocus(lastBlured)} />
       <NumberButtonSection onButtonClick={() => restoreLastFocus(lastBlured)} />
-    </StyledSection>
+    </BodySection>
   );
 };
 
