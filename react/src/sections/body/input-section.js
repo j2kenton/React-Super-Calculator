@@ -108,7 +108,7 @@ export const InputSection = ({
 };
 
 InputSection.propTypes = {
-  preview: PropTypes.number,
+  preview: PropTypes.string,
   input: PropTypes.string,
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,

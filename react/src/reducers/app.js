@@ -8,7 +8,7 @@ import {
   INPUT_REMOVE_LAST_CHAR
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
-import { isInputValid } from 'utils/tools';
+import { isInputValid, getUpdatedTempValues } from 'utils/tools';
 
 const initialState = {
   output: 0,
@@ -38,57 +38,43 @@ export const app = (state = initialState, action) => {
       };
     }
     case UPDATE_INPUT: {
-      const newInput = action.payload;
-      const isInputTextValid = isInputValid(newInput);
-      const preview = isInputTextValid
-        ? calculateUpdatedValue({
-            currentValue: state.output,
-            valueApplied: newInput,
-            operator: state.operator
-          })
-        : initialState.preview;
-      const input = isInputTextValid ? newInput : state.input;
+      const newValues = getUpdatedTempValues(state, action.payload, initialState.preview);
       return {
         ...state,
-        preview: `${preview}`,
-        input
+        ...newValues
       };
     }
     case APPEND_TO_INPUT: {
       const textToAppend = action.payload;
       const newInput = `${state.input}${textToAppend}`;
-      const isInputTextValid = isInputValid(newInput);
-      const preview = isInputTextValid
-        ? calculateUpdatedValue({
-            currentValue: state.output,
-            valueApplied: newInput,
-            operator: state.operator
-          })
-        : initialState.preview;
-      const input = isInputTextValid ? newInput : state.input;
+      const newValues = getUpdatedTempValues(state, newInput, initialState.preview);
       return {
         ...state,
-        preview: `${preview}`,
-        input
+        ...newValues
       };
     }
     case INPUT_REMOVE_LAST_CHAR: {
+      const newValues = getUpdatedTempValues(state, state.input.slice(0, -1), initialState.preview);
       return {
         ...state,
-        input: state.input.slice(0, -1)
+        ...newValues
       };
     }
     case SET_OPERATOR: {
-      return {
+      const newState = {
         ...state,
         operator: action.payload
       };
+      const newValues = getUpdatedTempValues(newState, state.input, initialState.preview);
+      return { ...newState, ...newValues };
     }
     case TOGGLE_NEGATIVITY: {
-      return {
+      const newState = {
         ...state,
         output: state.output * -1
       };
+      const newValues = getUpdatedTempValues(newState, state.input, initialState.preview);
+      return { ...newState, ...newValues };
     }
     default:
       return state;
