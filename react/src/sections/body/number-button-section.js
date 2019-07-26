@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { appendToInput as appendToInputAction } from 'common-actions';
 import Button from 'components/button';
+import { NUMBER_BUTTONS } from 'constants/numeric';
 
 const ButtonsWrapper = styled.div`
   background-color: green;
@@ -25,7 +26,7 @@ export const NumberButtonSection = ({ appendToInput, onButtonClick }) => {
 
   return (
     <ButtonsWrapper>
-      {['7', '8', '9', '4', '5', '6', '1', '2', '3', '-', '0', '.'].map(text => (
+      {NUMBER_BUTTONS.map(text => (
         <Button
           onClick={e => onNumberButtonClick(e, text)}
           key={text}

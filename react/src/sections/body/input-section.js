@@ -12,7 +12,7 @@ import {
   inputRemoveLastChar as inputRemoveLastCharAction,
   setOutputAndOperator as setOutputAndOperatorAction
 } from 'common-actions';
-import OperatorControls from '../../components/operator-controls';
+import OperatorControls from 'components/operator-controls';
 
 const InputWrapper = styled.div`
   height: 86px;
