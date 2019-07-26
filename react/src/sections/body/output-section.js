@@ -78,7 +78,7 @@ export const OutputSection = ({
         </Wrapper>
         <NumberArea>{Math.abs(output)}</NumberArea>
         <Wrapper>
-          <Button onClick={onClear} text={'✗ clear'} inverted fontSize={'1.2rem'} />
+          <Button onClick={onClear} text={'✗'} inverted fontSize={'1.2rem'} />
         </Wrapper>
       </OutputArea>
     </OutputWrapper>

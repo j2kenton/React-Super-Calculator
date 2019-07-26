@@ -125,21 +125,13 @@ export const InputSection = ({
         <PreviewSection>{preview}</PreviewSection>
       </InputsWrapper>
       <Wrapper>
-        <Button
-          onClick={onBackspace}
-          disabled={!input}
-          text={'⇐ delete'}
-          inverted
-          height={'50%'}
-          fontSize={'1.2rem'}
-        />
+        <Button onClick={onBackspace} disabled={!input} text={'⇐'} inverted height={'50%'} />
         <Button
           onClick={onApply}
           disabled={!isInputUsable(input)}
-          text={'✓ apply'}
+          text={'='}
           inverted
           height={'50%'}
-          fontSize={'1.2rem'}
         />
       </Wrapper>
     </InputWrapper>

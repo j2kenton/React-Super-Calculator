@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { OPERATORS } from 'constants/numeric';
-import { setOperator as setOperatorAction } from 'common-actions';
+import { setOutputAndOperator as setOutputAndOperatorAction } from 'common-actions';
 import Button from 'components/button';
 
 const OperatorsWrapper = styled.div`
@@ -10,10 +10,10 @@ const OperatorsWrapper = styled.div`
   display: inline-block;
 `;
 
-export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
+export const OperatorControls = ({ setOutputAndOperator, operator, onButtonClick }) => {
   const onOperatorSelection = operatorKey => {
     onButtonClick();
-    setOperator(operatorKey);
+    setOutputAndOperator(operatorKey);
   };
 
   return (
@@ -34,7 +34,7 @@ export const OperatorControls = ({ setOperator, operator, onButtonClick }) => {
 
 OperatorControls.propTypes = {
   operator: PropTypes.string,
-  setOperator: PropTypes.func,
+  setOutputAndOperator: PropTypes.func,
   onButtonClick: PropTypes.func
 };
 
@@ -45,5 +45,5 @@ const mapStateToProps = ({ app }) => ({
 
 export default connect(
   mapStateToProps,
-  { setOperator: setOperatorAction }
+  { setOutputAndOperator: setOutputAndOperatorAction }
 )(OperatorControls);
