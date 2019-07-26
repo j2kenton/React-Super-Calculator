@@ -16,6 +16,7 @@ const InputWrapper = styled.div`
 
 const InputsWrapper = styled.div`
   width: 400px;
+  height: 100%;
   display: inline-block;
   vertical-align: top;
 `;
@@ -40,18 +41,25 @@ const BackspaceButton = styled.button`
   height: 50%;
 `;
 
-const InputArea = styled.input.attrs({
+const InputArea = styled.div`
+  width: 400px;
+  height: 50%;
+`;
+
+const InputField = styled.input.attrs({
   type: 'text'
 })`
-  background-color: green;
-  width: 400px;
+  height: 100%;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 `;
 
 const PreviewSection = styled.div`
   color: grey;
-  float: left;
   width: 400px;
-  min-height: 10px;
+  height: 50%;
+  padding: 10px;
 `;
 
 export const InputSection = ({
@@ -95,19 +103,21 @@ export const InputSection = ({
     <InputWrapper>
       <OperatorControls onButtonClick={onButtonClick} />
       <InputsWrapper>
-        <InputArea
-          name="inputArea"
-          id="inputArea"
-          onChange={onInputChange}
-          value={input}
-          onBlur={onBlur}
-          ref={ref}
-          onKeyPress={e => {
-            if (e.key === 'Enter') {
-              onApply(e);
-            }
-          }}
-        />
+        <InputArea>
+          <InputField
+            name="inputArea"
+            id="inputArea"
+            onChange={onInputChange}
+            value={input}
+            onBlur={onBlur}
+            ref={ref}
+            onKeyPress={e => {
+              if (e.key === 'Enter') {
+                onApply(e);
+              }
+            }}
+          />
+        </InputArea>
         <PreviewSection>{preview}</PreviewSection>
       </InputsWrapper>
       <ButtonsWrapper>
