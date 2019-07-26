@@ -5,7 +5,8 @@ import {
   SET_OPERATOR,
   TOGGLE_NEGATIVITY,
   APPEND_TO_INPUT,
-  INPUT_REMOVE_LAST_CHAR
+  INPUT_REMOVE_LAST_CHAR,
+  RESET_FORM
 } from 'constants/action-types';
 
 export function setOutput(output) {
@@ -53,5 +54,11 @@ export function appendToInput(text) {
 export function inputRemoveLastChar() {
   return {
     type: INPUT_REMOVE_LAST_CHAR
+  };
+}
+
+export function resetForm() {
+  return {
+    type: RESET_FORM
   };
 }

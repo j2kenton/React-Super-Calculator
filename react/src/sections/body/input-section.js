@@ -57,7 +57,7 @@ export const InputSection = ({
   const onApply = e => {
     e.preventDefault();
     onButtonClick();
-    if (input) {
+    if (isInputUsable(input)) {
       updateOutput();
     }
   };

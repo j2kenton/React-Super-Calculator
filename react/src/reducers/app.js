@@ -5,7 +5,8 @@ import {
   SET_OPERATOR,
   TOGGLE_NEGATIVITY,
   APPEND_TO_INPUT,
-  INPUT_REMOVE_LAST_CHAR
+  INPUT_REMOVE_LAST_CHAR,
+  RESET_FORM
 } from 'constants/action-types';
 import { calculateUpdatedValue } from 'utils/calculations';
 import { isInputValid, getUpdatedTempValues } from 'utils/tools';
@@ -75,6 +76,9 @@ export const app = (state = initialState, action) => {
       };
       const newValues = getUpdatedTempValues(newState, state.input, initialState.preview);
       return { ...newState, ...newValues };
+    }
+    case RESET_FORM: {
+      return { ...initialState };
     }
     default:
       return state;
