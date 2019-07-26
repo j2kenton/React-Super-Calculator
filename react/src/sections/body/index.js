@@ -5,9 +5,7 @@ import OutputSection from './output-section';
 import InputSection from './input-section';
 import NumberButtonSection from './number-button-section';
 
-const BodySection = styled.section`
-  background-color: pink;
-`;
+const BodySection = styled.section``;
 
 export const Body = () => {
   const [lastBlured, setLastBlured] = useState(null);

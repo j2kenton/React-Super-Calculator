@@ -7,11 +7,12 @@ import {
 } from 'common-actions';
 
 const OutputWrapper = styled.div`
-  background-color: blue;
+  height: 43px;
+  margin-bottom: 20px;
 `;
 
 const OutputArea = styled.div`
-  height: 43px;
+  height: 100%;
 `;
 
 const SignButton = styled.button`
@@ -23,6 +24,7 @@ const ButtonWrapper = styled.div`
   width: 100px;
   height: 100%;
   display: inline-block;
+  vertical-align: top;
 `;
 
 const SignWrapper = styled.div`
@@ -48,6 +50,11 @@ const NumberArea = styled.div`
   width: 400px;
   display: inline-block;
   font-size: 2rem;
+  height: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-top: 5px;
 `;
 
 const SignSymbol = styled.span``;
