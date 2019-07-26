@@ -8,7 +8,11 @@ const ButtonsWrapper = styled.div`
   clear: both;
   display: flex;
   flex-wrap: wrap;
+
   width: 400px;
+  @media (max-width: 600px) {
+    width: calc(100vw - 200px);
+  }
   margin-left: 100px;
 `;
 

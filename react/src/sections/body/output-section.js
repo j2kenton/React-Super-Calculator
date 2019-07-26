@@ -56,7 +56,11 @@ const NumberArea = styled.div`
   background-color: grey;
   color: white;
   font-weight: bold;
+
   width: 400px;
+  @media (max-width: 600px) {
+    width: calc(100vw - 200px);
+  }
   display: inline-block;
   font-size: 2rem;
   height: 100%;

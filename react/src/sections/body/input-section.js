@@ -18,6 +18,9 @@ const InputWrapper = styled.div`
 
 const InputsWrapper = styled.div`
   width: 400px;
+  @media (max-width: 600px) {
+    width: calc(100vw - 200px);
+  }
   height: 100%;
   display: inline-block;
   vertical-align: top;
@@ -46,6 +49,9 @@ const BackspaceButton = styled.button`
 
 const InputArea = styled.div`
   width: 400px;
+  @media (max-width: 600px) {
+    width: calc(100vw - 200px);
+  }
   height: 50%;
 `;
 
@@ -60,7 +66,11 @@ const InputField = styled.input.attrs({
 
 const PreviewSection = styled.div`
   color: grey;
+
   width: 400px;
+  @media (max-width: 600px) {
+    width: calc(100vw - 200px);
+  }
   height: 50%;
   padding: 10px;
   box-sizing: border-box;

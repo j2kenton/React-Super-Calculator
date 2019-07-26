@@ -13,6 +13,9 @@ const FullPage = styled.div`
 
 const MainSection = styled.main`
   width: 600px;
+  @media (max-width: 600px) {
+    width: 100vw;
+  }
   margin-left: 50%;
   transform: translate(-50%, 0);
   margin-top: 5vh;
