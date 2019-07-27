@@ -10,7 +10,6 @@
     "@babel/preset-flow"
   ],
   "plugins": [
-    "recharts",
     "lodash",
     [
       "babel-plugin-styled-components",
