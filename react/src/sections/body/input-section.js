@@ -69,7 +69,7 @@ export const InputSection = ({
       <OperatorControls onButtonClick={onButtonClick} />
       <InputsWrapper>
         {isNoHistory ? (
-          <Wrapper>-</Wrapper>
+          <Wrapper> </Wrapper>
         ) : (
           <Input onButtonClick={onButtonClick} onBlur={onBlur} />
         )}

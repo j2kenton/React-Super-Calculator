@@ -71,10 +71,13 @@ export const InputSection = ({
     const isUpdatingOperator = !!(matchingOperator && (isApplyingInput || !OPERATORS[operator]));
     const isAddingNegativeSign = keyPressed === '-' && !input;
     if (isUpdatingOperator) {
+      e.preventDefault();
       setOutputAndOperator(matchingOperator[0]);
     } else if (isAddingNegativeSign) {
+      e.preventDefault();
       updateInput(keyPressed);
     } else if (keyPressed === 'Enter') {
+      e.preventDefault();
       onApply(e);
     }
   };
@@ -83,6 +86,7 @@ export const InputSection = ({
     <InputArea fullHeight={fullHeight}>
       <InputField
         name="inputArea"
+        autoComplete="off"
         id="inputArea"
         onChange={onInputChange}
         value={input}

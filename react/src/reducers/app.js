@@ -53,7 +53,7 @@ export const app = (state = initialState, action) => {
       let { output } = state;
       const { preview, input } = state;
       if (!isNaN(preview)) {
-        output = preview;
+        output = +preview;
       } else if (input !== '') {
         output = +input;
       }
