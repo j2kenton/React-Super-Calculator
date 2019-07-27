@@ -37,11 +37,22 @@ export const InputSection = ({
   onBlur,
   onButtonClick,
   setOutputAndOperator,
-  fullHeight
+  fullHeight,
+  operator
 }) => {
   const onInputChange = e => {
     e.preventDefault();
-    updateInput(e.target.value);
+    // const targetValue = e.target && e.target.value;
+    // const matchingOperator = Object.entries(OPERATORS).find(
+    //   ([, value]) => value.keyboardChar === targetValue
+    // );
+    // const isAddingOperator = !operator && !!matchingOperator;
+    // if (!isAddingOperator) {
+    //   updateInput(e.target.value);
+    // }
+    if (isInputUsable(e.target.value)) {
+      updateInput(e.target.value);
+    }
   };
 
   const onApply = e => {
@@ -60,12 +71,14 @@ export const InputSection = ({
   }, []);
 
   const handleKeyPress = e => {
+    const keyPressed = e.key;
     const matchingOperator = Object.entries(OPERATORS).find(
-      ([, value]) => value.keyboardChar === e.key
+      ([, value]) => value.keyboardChar === keyPressed
     );
-    if (matchingOperator && isInputUsable(input)) {
+    const isUpdatingOperator = !!matchingOperator && !operator;
+    if (isUpdatingOperator) {
       setOutputAndOperator(matchingOperator[0]);
-    } else if (e.key === 'Enter') {
+    } else if (keyPressed === 'Enter') {
       onApply(e);
     }
   };
@@ -87,6 +100,7 @@ export const InputSection = ({
 
 InputSection.propTypes = {
   input: PropTypes.string,
+  operator: PropTypes.string,
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,
   onBlur: PropTypes.func,

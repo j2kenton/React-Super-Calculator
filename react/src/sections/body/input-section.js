@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import Wrapper from 'components/wrapper';
 import {
   updateOutput as updateOutputAction,
-  updateInput as updateInputAction,
   inputRemoveLastChar as inputRemoveLastCharAction,
   setOutputAndOperator as setOutputAndOperatorAction
 } from 'common-actions';
@@ -111,7 +110,6 @@ export default connect(
   mapStateToProps,
   {
     updateOutput: updateOutputAction,
-    updateInput: updateInputAction,
     inputRemoveLastChar: inputRemoveLastCharAction,
     setOutputAndOperator: setOutputAndOperatorAction
   }

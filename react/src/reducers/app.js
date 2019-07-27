@@ -43,11 +43,18 @@ export const app = (state = initialState, action) => {
         output,
         previousOutputs: [...state.previousOutputs, state.output],
         input: initialState.input,
-        preview: initialState.preview
+        preview: initialState.preview,
+        operator: initialState.operator
       };
     }
     case SET_OUTPUT_AND_OPERATOR: {
-      const output = isNaN(state.preview) ? +state.input : +state.preview;
+      let { output } = state;
+      const { preview, input } = state;
+      if (!isNaN(preview)) {
+        output = preview;
+      } else if (input !== '') {
+        output = +input;
+      }
       return {
         ...state,
         output,
