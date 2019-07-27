@@ -10,7 +10,6 @@ import {
   UNDO_UPDATE_OUTPUT,
   SET_OUTPUT_AND_OPERATOR
 } from 'constants/action-types';
-import { calculateUpdatedValue } from 'utils/calculations';
 import { getUpdatedTempValues } from 'utils/tools';
 
 const initialState = {
@@ -24,9 +23,12 @@ const initialState = {
 export const app = (state = initialState, action) => {
   switch (action.type) {
     case SET_OUTPUT: {
+      if (isNaN(action.payload)) {
+        return state;
+      }
       return {
         ...state,
-        output: action.payload,
+        output: +action.payload,
         previousOutputs: [...state.previousOutputs, state.output]
       };
     }
@@ -35,7 +37,7 @@ export const app = (state = initialState, action) => {
       const { preview, input } = state;
       if (!isNaN(preview)) {
         output = +preview;
-      } else if (input) {
+      } else if (!isNaN(input)) {
         output = +input;
       }
       return {

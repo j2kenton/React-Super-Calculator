@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { OPERATORS } from 'constants/numeric';
-import { isInputUsable } from 'utils/tools';
+import { isInputValid, isInputUsable } from 'utils/tools';
 import styled from 'styled-components';
 import {
   updateOutput as updateOutputAction,
@@ -42,15 +42,7 @@ export const InputSection = ({
 }) => {
   const onInputChange = e => {
     e.preventDefault();
-    // const targetValue = e.target && e.target.value;
-    // const matchingOperator = Object.entries(OPERATORS).find(
-    //   ([, value]) => value.keyboardChar === targetValue
-    // );
-    // const isAddingOperator = !operator && !!matchingOperator;
-    // if (!isAddingOperator) {
-    //   updateInput(e.target.value);
-    // }
-    if (isInputUsable(e.target.value)) {
+    if (isInputValid(e.target.value)) {
       updateInput(e.target.value);
     }
   };
@@ -58,7 +50,7 @@ export const InputSection = ({
   const onApply = e => {
     e.preventDefault();
     onButtonClick();
-    if (isInputUsable(input)) {
+    if (isInputValid(input)) {
       updateOutput();
     }
   };
@@ -75,9 +67,13 @@ export const InputSection = ({
     const matchingOperator = Object.entries(OPERATORS).find(
       ([, value]) => value.keyboardChar === keyPressed
     );
-    const isUpdatingOperator = !!matchingOperator && !operator;
+    const isApplyingInput = isInputUsable(input);
+    const isUpdatingOperator = !!(matchingOperator && (isApplyingInput || !OPERATORS[operator]));
+    const isAddingNegativeSign = keyPressed === '-' && !input;
     if (isUpdatingOperator) {
       setOutputAndOperator(matchingOperator[0]);
+    } else if (isAddingNegativeSign) {
+      updateInput(keyPressed);
     } else if (keyPressed === 'Enter') {
       onApply(e);
     }
