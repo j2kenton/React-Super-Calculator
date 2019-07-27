@@ -11,6 +11,7 @@ import Wrapper from 'components/wrapper';
 import Input from 'components/input';
 
 const OutputWrapper = styled.div`
+  overflow: hidden;
   height: ${props => props.theme.sizes.shortElementHeight}px;
   margin-bottom: 8px;
 `;

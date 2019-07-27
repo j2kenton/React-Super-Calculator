@@ -8,12 +8,15 @@ export const theme = {
     disabledBackground: '#bbbbbb',
     buttonText: '#444444',
     standardGrey: '#808080',
+    standardGreyLightened: '#999999',
     darkGrey: '#333333',
+    darkGreyLightened: '#444444',
     paleBackground: '#f5f5f5',
     alternativeGrey: '#bbbbbb',
 
     inverted: {
-      buttonBackground: '#555555'
+      buttonBackground: '#555555',
+      buttonBackgroundLightened: '#666666'
     }
   }
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import Body from 'sections/body';
 import styled from 'styled-components';
+import GlobalStyle from 'global-style';
 
 const FullPage = styled.div`
   background-color: ${props => props.theme.colors.black};
@@ -37,6 +38,7 @@ const StyledFooter = styled.footer`
 function App() {
   return (
     <FullPage>
+      <GlobalStyle />
       <MainSection>
         <StyledHeader>
           <h1>React Intuitive Calculator</h1>

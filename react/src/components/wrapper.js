@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
+  overflow: hidden;
   display: inline-block;
   box-sizing: border-box;
   vertical-align: top;
