@@ -23,10 +23,12 @@ const NumberArea = styled(Wrapper)`
   background-color: ${props => props.theme.colors.standardGrey};
   color: ${props => props.theme.colors.white};
   font-weight: bold;
-  width: ${props => props.theme.sizes.wideColumn}px;
+  width: ${props => props.theme.sizes.wideColumn - props.theme.sizes.narrowColumn / 2}px;
   @media (max-width: ${props =>
       props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
-    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
+    width: calc(
+      100vw - ${props => props.theme.sizes.narrowColumn * 2 + props.theme.sizes.narrowColumn / 2}px
+    );
   }
   font-size: 1.6rem;
   padding-left: 10px;
@@ -64,21 +66,23 @@ export const OutputSection = ({
     <OutputWrapper>
       <OutputArea>
         <Wrapper>
-          <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} width={'50%'} />
-          <Button
-            onClick={e => onToggleSign(e)}
-            text={output < 0 ? '-' : '+'}
-            width={'50%'}
-            pale
-            disabled={!output}
-          />
+          <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} />
         </Wrapper>
         {isNoHistory ? (
-          <Wrapper width={'400px'}>
+          <Wrapper width={'400'}>
             <Input fullHeight />
           </Wrapper>
         ) : (
-          <NumberArea>{Math.abs(output)}</NumberArea>
+          <>
+            <Button
+              onClick={e => onToggleSign(e)}
+              text={output < 0 ? '-' : '+'}
+              width={'50px'}
+              pale
+              disabled={!output}
+            />
+            <NumberArea>{Math.abs(output)}</NumberArea>
+          </>
         )}
         <Wrapper>
           <Button onClick={onClear} text={'✗'} inverted fontSize={'1.5rem'} />
