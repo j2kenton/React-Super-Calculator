@@ -34,7 +34,6 @@ export const InputSection = ({
   updateOutput,
   updateInput,
   onBlur,
-  onButtonClick,
   setOutputAndOperator,
   fullHeight = false,
   operator
@@ -55,7 +54,6 @@ export const InputSection = ({
 
   const onApply = e => {
     e.preventDefault();
-    onButtonClick();
     if (isInputValid(input)) {
       updateOutput();
     }
@@ -103,7 +101,6 @@ InputSection.propTypes = {
   updateOutput: PropTypes.func,
   updateInput: PropTypes.func,
   onBlur: PropTypes.func,
-  onButtonClick: PropTypes.func,
   setOutputAndOperator: PropTypes.func,
   fullHeight: PropTypes.bool
 };

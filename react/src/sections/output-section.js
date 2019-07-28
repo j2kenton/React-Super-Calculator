@@ -40,6 +40,7 @@ export const OutputSection = ({
   output,
   toggleOutputNegativity,
   onButtonClick,
+  onBlur,
   resetForm,
   undoUpdateOutput,
   previousOutputs = []
@@ -71,7 +72,7 @@ export const OutputSection = ({
         </Wrapper>
         {isNoHistory ? (
           <Wrapper width={'400'}>
-            <Input fullHeight />
+            <Input fullHeight onButtonClick={onButtonClick} onBlur={onBlur} />
           </Wrapper>
         ) : (
           <>
@@ -97,6 +98,7 @@ OutputSection.propTypes = {
   output: PropTypes.number,
   toggleOutputNegativity: PropTypes.func,
   onButtonClick: PropTypes.func,
+  onBlur: PropTypes.func,
   resetForm: PropTypes.func,
   undoUpdateOutput: PropTypes.func,
   previousOutputs: PropTypes.array

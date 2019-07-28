@@ -41,7 +41,7 @@ export const Body = ({ resetForm }) => {
 
   return (
     <StyledSection>
-      <OutputSection onButtonClick={restoreFocus} />
+      <OutputSection onBlur={onBlur} onButtonClick={restoreFocus} />
       <InputSection onBlur={onBlur} onButtonClick={restoreFocus} />
       <NumberButtonSection onButtonClick={restoreFocus} />
     </StyledSection>
