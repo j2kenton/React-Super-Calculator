@@ -63,6 +63,29 @@ export const OutputSection = ({
     resetForm();
   };
 
+  const generateNumberComponents = isNoHistory => {
+    if (isNoHistory) {
+      return (
+        <Wrapper width={'400'}>
+          <Input fullHeight onButtonClick={onButtonClick} onBlur={onBlur} />
+        </Wrapper>
+      );
+    }
+    return (
+      <>
+        <Button
+          onClick={e => onToggleSign(e)}
+          text={output < 0 ? '-' : '+'}
+          width={'50px'}
+          pale
+          disabled={!output}
+          border={'1px solid #eeeeee'}
+        />
+        <NumberArea>{Math.abs(output)}</NumberArea>
+      </>
+    );
+  };
+
   const isNoHistory = previousOutputs.length === 0;
   return (
     <OutputWrapper>
@@ -70,23 +93,7 @@ export const OutputSection = ({
         <Wrapper>
           <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} inverted />
         </Wrapper>
-        {isNoHistory ? (
-          <Wrapper width={'400'}>
-            <Input fullHeight onButtonClick={onButtonClick} onBlur={onBlur} />
-          </Wrapper>
-        ) : (
-          <>
-            <Button
-              onClick={e => onToggleSign(e)}
-              text={output < 0 ? '-' : '+'}
-              width={'50px'}
-              pale
-              disabled={!output}
-              border={'1px solid #eeeeee'}
-            />
-            <NumberArea>{Math.abs(output)}</NumberArea>
-          </>
-        )}
+        {generateNumberComponents(isNoHistory)}
         <Wrapper>
           <Button onClick={onClear} text={'✗'} inverted fontSize={'1.5rem'} />
         </Wrapper>
