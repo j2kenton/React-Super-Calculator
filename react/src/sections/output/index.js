@@ -7,7 +7,7 @@ import {
 } from 'common-actions';
 import Button from 'components/button';
 import Wrapper from 'components/wrapper';
-import InputOutputSection from 'components/input-output-section';
+import InputOutput from './input-output-section';
 
 const OutputWrapper = styled.div`
   overflow: hidden;
@@ -19,12 +19,7 @@ const OutputArea = styled.div`
   height: 100%;
 `;
 
-export const OutputSection = ({
-  onButtonClick,
-  resetForm,
-  undoUpdateOutput,
-  previousOutputs = []
-}) => {
+export const Output = ({ onButtonClick, resetForm, undoUpdateOutput, previousOutputs = [] }) => {
   const onUndoClick = e => {
     e.preventDefault();
     onButtonClick();
@@ -44,7 +39,7 @@ export const OutputSection = ({
         <Wrapper>
           <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} inverted />
         </Wrapper>
-        <InputOutputSection />
+        <InputOutput />
         <Wrapper>
           <Button onClick={onClear} text={'✗'} inverted fontSize={'1.5rem'} />
         </Wrapper>
@@ -53,7 +48,7 @@ export const OutputSection = ({
   );
 };
 
-OutputSection.propTypes = {
+Output.propTypes = {
   onButtonClick: PropTypes.func,
   resetForm: PropTypes.func,
   undoUpdateOutput: PropTypes.func,
@@ -71,4 +66,4 @@ export default connect(
     resetForm: resetFormAction,
     undoUpdateOutput: undoUpdateOutputAction
   }
-)(OutputSection);
+)(Output);

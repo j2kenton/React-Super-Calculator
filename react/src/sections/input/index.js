@@ -7,9 +7,9 @@ import {
   inputRemoveLastChar as inputRemoveLastCharAction,
   setOutputAndOperator as setOutputAndOperatorAction
 } from 'common-actions';
-import OperatorControls from 'components/operator-controls';
-import Input from 'components/input';
-import InputProcessingSection from 'components/input-processing-section';
+import InputSection from 'components/input-section';
+import OperatorControls from './operator-controls';
+import InputProcessingSection from './input-processing-section';
 
 const InputWrapper = styled.div`
   height: ${props => props.theme.sizes.veryShortElementHeight * 2}px;
@@ -23,13 +23,13 @@ const InputsWrapper = styled(Wrapper)`
   }
 `;
 
-export const InputSection = ({ onButtonClick, onBlur, previousOutputs = [] }) => {
+export const Input = ({ onButtonClick, onBlur, previousOutputs = [] }) => {
   const generateInputComponents = isNoHistory => (
     <InputsWrapper>
       {isNoHistory ? (
         <Wrapper> </Wrapper>
       ) : (
-        <Input onButtonClick={onButtonClick} onBlur={onBlur} fullHeight />
+        <InputSection onButtonClick={onButtonClick} onBlur={onBlur} fullHeight />
       )}
     </InputsWrapper>
   );
@@ -43,7 +43,7 @@ export const InputSection = ({ onButtonClick, onBlur, previousOutputs = [] }) =>
   );
 };
 
-InputSection.propTypes = {
+Input.propTypes = {
   onBlur: PropTypes.func,
   onButtonClick: PropTypes.func,
   previousOutputs: PropTypes.array
@@ -62,4 +62,4 @@ export default connect(
     inputRemoveLastChar: inputRemoveLastCharAction,
     setOutputAndOperator: setOutputAndOperatorAction
   }
-)(InputSection);
+)(Input);

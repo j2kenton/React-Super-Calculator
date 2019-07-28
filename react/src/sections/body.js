@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { restoreLastFocus } from 'utils/tools';
 import { resetForm as resetFormAction } from 'common-actions';
-import OutputSection from './output-section';
-import InputSection from './input-section';
-import NumberButtonSection from './number-button-section';
+import Output from './output';
+import Input from './input';
+import NumberButtonSection from './number-buttons';
 
 const StyledSection = styled.section`
   padding: 10px;
@@ -41,8 +41,8 @@ export const Body = ({ resetForm }) => {
 
   return (
     <StyledSection>
-      <OutputSection onBlur={onBlur} onButtonClick={restoreFocus} />
-      <InputSection onBlur={onBlur} onButtonClick={restoreFocus} />
+      <Output onBlur={onBlur} onButtonClick={restoreFocus} />
+      <Input onBlur={onBlur} onButtonClick={restoreFocus} />
       <NumberButtonSection onButtonClick={restoreFocus} />
     </StyledSection>
   );

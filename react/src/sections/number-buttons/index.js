@@ -17,7 +17,7 @@ const ButtonsWrapper = styled.div`
   margin-left: ${props => props.theme.sizes.narrowColumn}px;
 `;
 
-export const NumberButtonSection = ({ appendToInput, onButtonClick }) => {
+export const Index = ({ appendToInput, onButtonClick }) => {
   const onNumberButtonClick = (e, text) => {
     e.preventDefault();
     onButtonClick();
@@ -40,7 +40,7 @@ export const NumberButtonSection = ({ appendToInput, onButtonClick }) => {
   );
 };
 
-NumberButtonSection.propTypes = {
+Index.propTypes = {
   appendToInput: PropTypes.func,
   onButtonClick: PropTypes.func
 };
@@ -53,4 +53,4 @@ const mapStateToProps = ({ app }) => ({
 export default connect(
   mapStateToProps,
   { appendToInput: appendToInputAction }
-)(NumberButtonSection);
+)(Index);

@@ -8,7 +8,7 @@ import {
 } from 'common-actions';
 import Button from 'components/button';
 import Wrapper from 'components/wrapper';
-import Input from 'components/input';
+import Input from 'components/input-section';
 
 const NumberArea = styled(Wrapper)`
   background-color: ${props => props.theme.colors.white};
