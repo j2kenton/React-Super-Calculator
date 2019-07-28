@@ -65,15 +65,21 @@ export const InputSection = ({
       ([, value]) => value.keyboardChar === keyPressed
     );
     const isApplyingInput = isInputUsable(input);
-    const isUpdatingOperator = !!(matchingOperator && (isApplyingInput || !OPERATORS[operator]));
-    const isAddingNegativeSign = keyPressed === '-' && !input;
+    const isSelectingOperator = !OPERATORS[operator];
+    const isOperatorChar = !!matchingOperator;
+    const isUpdatingOperator = isOperatorChar && (isApplyingInput || isSelectingOperator);
     if (isUpdatingOperator) {
       e.preventDefault();
       setOutputAndOperator(matchingOperator[0]);
-    } else if (isAddingNegativeSign) {
+      return;
+    }
+    const isAddingNegativeSign = keyPressed === '-' && !input;
+    if (isAddingNegativeSign) {
       e.preventDefault();
       updateInput(keyPressed);
-    } else if (keyPressed === 'Enter') {
+      return;
+    }
+    if (keyPressed === 'Enter') {
       e.preventDefault();
       onApply(e);
     }
