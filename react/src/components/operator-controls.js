@@ -18,14 +18,14 @@ export const OperatorControls = ({ setOutputAndOperator, operator, onButtonClick
 
   return (
     <OperatorsWrapper>
-      {Object.entries(OPERATORS).map(entry => (
+      {Object.entries(OPERATORS).map(([key, value]) => (
         <Button
-          key={entry[0]}
-          onClick={() => onOperatorSelection(entry[0])}
-          selected={entry[0] === operator}
+          key={key}
+          onClick={() => onOperatorSelection(key)}
+          selected={key === operator}
           width={'50%'}
           height={'50%'}
-          text={entry[1].symbol}
+          text={value.symbol}
         />
       ))}
     </OperatorsWrapper>

@@ -30,13 +30,13 @@ const InputField = styled.input.attrs({
 `;
 
 export const InputSection = ({
-  input,
+  input = '',
   updateOutput,
   updateInput,
   onBlur,
   onButtonClick,
   setOutputAndOperator,
-  fullHeight,
+  fullHeight = false,
   operator
 }) => {
   const ref = useRef();

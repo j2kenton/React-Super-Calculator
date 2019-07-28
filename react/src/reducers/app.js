@@ -78,12 +78,13 @@ export const app = (state = initialState, action) => {
       };
     }
     case TOGGLE_NEGATIVITY: {
+      const { output, input } = state;
       const newState = {
         ...state,
-        output: state.output * -1,
-        previousOutputs: [...state.previousOutputs, state.output]
+        output: output * -1,
+        previousOutputs: [...state.previousOutputs, output]
       };
-      const newValues = getUpdatedTempValues(newState, state.input, initialState.preview);
+      const newValues = getUpdatedTempValues(newState, input, initialState.preview);
       return { ...newState, ...newValues };
     }
     case RESET_FORM: {

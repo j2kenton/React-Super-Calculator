@@ -29,6 +29,7 @@ export const Body = ({ resetForm }) => {
   useEffect(
     () => {
       const handleKeydown = event => {
+        // 'Esc' key pressed
         if (event.keyCode === 27) {
           resetForm();
         }
