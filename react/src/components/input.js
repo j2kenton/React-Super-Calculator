@@ -73,12 +73,6 @@ export const InputSection = ({
       setOutputAndOperator(matchingOperator[0]);
       return;
     }
-    const isAddingNegativeSign = keyPressed === '-' && !input;
-    if (isAddingNegativeSign) {
-      e.preventDefault();
-      updateInput(keyPressed);
-      return;
-    }
     if (keyPressed === 'Enter') {
       e.preventDefault();
       onApply(e);
@@ -112,7 +106,6 @@ InputSection.propTypes = {
 };
 
 const mapStateToProps = ({ app }) => ({
-  preview: app.preview,
   input: app.input,
   operator: app.operator
 });
