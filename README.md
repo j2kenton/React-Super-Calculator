@@ -1,2 +1,2 @@
 # react-calculator
-Calculator in React.js written (TDD)
+Calculator built in React/Redux designed to be as Intuitive as possible
