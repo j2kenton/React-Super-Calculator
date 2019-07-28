@@ -26,7 +26,7 @@ const InputsWrapper = styled(Wrapper)`
 
 const PreviewSection = styled(Wrapper)`
   font-size: 1.3rem;
-  color: ${props => props.theme.colors.standardGrey};
+  color: ${props => props.theme.colors.paleGrey};
   width: ${props => props.theme.sizes.wideColumn}px;
   @media (max-width: ${props =>
       props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {

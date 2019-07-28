@@ -12,37 +12,39 @@ const StyledButton = styled.button`
     props.disabled ? props.theme.colors.disabledBackground : props.background};
   padding: ${props => props.padding};
   flex: ${props => props.flex};
+  border: ${props => props.border};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   
-  ${props =>
-    !props.disabled &&
-    props.selected &&
-    css`
-      color: ${props.theme.colors.white};
-      background: ${props.theme.colors.darkGrey};
-      &:hover {
-        background: ${props.theme.colors.darkGreyLightened};
-      }
-    `}
   ${props =>
     !props.disabled &&
     props.inverted &&
     css`
       color: ${props.theme.colors.white};
       background: ${props.theme.colors.inverted.buttonBackground};
-      &:hover {
+      &:hover,
+      &:active {
         background: ${props.theme.colors.inverted.buttonBackgroundLightened};
       }
     `}
+    
+    ${props =>
+      !props.disabled &&
+      props.selected &&
+      css`
+        color: ${props.theme.colors.white};
+        background: ${props.theme.colors.darkestGrey};
+        &:hover,
+        &:active {
+          background: ${props.theme.colors.darkestGreyLightened};
+        }
+      `}
+    
   ${props =>
     !props.disabled &&
     props.pale &&
     css`
-      color: ${props.theme.colors.white};
-      background: ${props.theme.colors.standardGrey};
-      &:hover {
-        background: ${props.theme.colors.standardGreyLightened};
-      }
+      color: ${props.theme.colors.black};
+      background: ${props.theme.colors.white};
     `}
 `;
 

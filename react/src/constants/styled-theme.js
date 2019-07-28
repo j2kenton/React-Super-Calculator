@@ -6,6 +6,7 @@ export const theme = {
     black: '#000000',
     buttonBackground: '#a9a9a9',
     disabledBackground: '#bbbbbb',
+    paleGrey: '#bbbbbb',
     buttonText: '#444444',
     standardGrey: '#808080',
     standardGreyLightened: '#999999',
@@ -13,6 +14,8 @@ export const theme = {
     darkGreyLightened: '#444444',
     paleBackground: '#f5f5f5',
     alternativeGrey: '#bbbbbb',
+    darkestGrey: '#111111',
+    darkestGreyLightened: '#222222',
 
     inverted: {
       buttonBackground: '#555555',

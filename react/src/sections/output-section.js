@@ -21,8 +21,8 @@ const OutputArea = styled.div`
 `;
 
 const NumberArea = styled(Wrapper)`
-  background-color: ${props => props.theme.colors.standardGrey};
-  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.black};
   font-weight: bold;
   width: ${props => props.theme.sizes.wideColumn - props.theme.sizes.narrowColumn / 2}px;
   @media (max-width: ${props =>
@@ -68,7 +68,7 @@ export const OutputSection = ({
     <OutputWrapper>
       <OutputArea>
         <Wrapper>
-          <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} />
+          <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} inverted />
         </Wrapper>
         {isNoHistory ? (
           <Wrapper width={'400'}>
@@ -82,6 +82,7 @@ export const OutputSection = ({
               width={'50px'}
               pale
               disabled={!output}
+              border={'1px solid #eeeeee'}
             />
             <NumberArea>{Math.abs(output)}</NumberArea>
           </>

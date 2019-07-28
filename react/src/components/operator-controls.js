@@ -26,6 +26,7 @@ export const OperatorControls = ({ setOutputAndOperator, operator, onButtonClick
           width={'50%'}
           height={'50%'}
           text={value.symbol}
+          inverted
         />
       ))}
     </OperatorsWrapper>
