@@ -13,7 +13,7 @@ import OperatorControls from 'components/operator-controls';
 import Input from 'components/input';
 
 const InputWrapper = styled.div`
-  height: ${props => props.theme.sizes.shortElementHeight * 2}px;
+  height: ${props => props.theme.sizes.veryShortElementHeight * 2}px;
 `;
 
 const InputsWrapper = styled(Wrapper)`
@@ -24,21 +24,7 @@ const InputsWrapper = styled(Wrapper)`
   }
 `;
 
-const PreviewSection = styled(Wrapper)`
-  font-size: 1.3rem;
-  color: ${props => props.theme.colors.paleGrey};
-  width: ${props => props.theme.sizes.wideColumn}px;
-  @media (max-width: ${props =>
-      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
-    width: calc(100vw - ${props => props.theme.sizes.narrowColumn * 2}px);
-  }
-  height: 50%;
-  padding: 10px;
-  background-color: ${props => props.theme.colors.paleBackground};
-`;
-
 export const InputSection = ({
-  preview,
   input,
   updateOutput,
   onButtonClick,
@@ -71,9 +57,8 @@ export const InputSection = ({
         {isNoHistory ? (
           <Wrapper> </Wrapper>
         ) : (
-          <Input onButtonClick={onButtonClick} onBlur={onBlur} />
+          <Input onButtonClick={onButtonClick} onBlur={onBlur} fullHeight />
         )}
-        <PreviewSection>{preview}</PreviewSection>
       </InputsWrapper>
       <Wrapper>
         <Button onClick={onBackspace} disabled={!input} text={'⇐'} inverted height={'50%'} />
@@ -90,7 +75,6 @@ export const InputSection = ({
 };
 
 InputSection.propTypes = {
-  preview: PropTypes.string,
   input: PropTypes.string,
   updateOutput: PropTypes.func,
   onBlur: PropTypes.func,
@@ -100,7 +84,6 @@ InputSection.propTypes = {
 };
 
 const mapStateToProps = ({ app }) => ({
-  preview: app.preview,
   input: app.input,
   operator: app.operator,
   previousOutputs: app.previousOutputs

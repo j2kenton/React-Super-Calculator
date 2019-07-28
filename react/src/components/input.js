@@ -25,8 +25,8 @@ const InputField = styled.input.attrs({
 })`
   height: 100%;
   width: 100%;
-  padding: 0 10px;
-  font-size: 1.3rem;
+  padding: 0 30px;
+  font-size: 1.5rem;
 `;
 
 export const InputSection = ({
