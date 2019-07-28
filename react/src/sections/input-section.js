@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { isInputUsable } from 'utils/tools';
-import Button from 'components/button';
 import styled from 'styled-components';
 import Wrapper from 'components/wrapper';
 import {
@@ -11,6 +9,7 @@ import {
 } from 'common-actions';
 import OperatorControls from 'components/operator-controls';
 import Input from 'components/input';
+import InputProcessingSection from 'components/input-processing-section';
 
 const InputWrapper = styled.div`
   height: ${props => props.theme.sizes.veryShortElementHeight * 2}px;
@@ -24,70 +23,33 @@ const InputsWrapper = styled(Wrapper)`
   }
 `;
 
-export const InputSection = ({
-  preview = '',
-  input = '',
-  updateOutput,
-  onButtonClick,
-  inputRemoveLastChar,
-  onBlur,
-  previousOutputs = []
-}) => {
-  const onApply = e => {
-    e.preventDefault();
-    onButtonClick();
-    if (isInputUsable(input)) {
-      updateOutput();
-    }
-  };
-
-  const onBackspace = e => {
-    e.preventDefault();
-    onButtonClick();
-    if (input) {
-      inputRemoveLastChar();
-    }
-  };
-
-  const isNoHistory = previousOutputs.length === 0;
+export const InputSection = ({ onButtonClick, onBlur, previousOutputs = [] }) => {
+  const generateInputComponents = isNoHistory => (
+    <InputsWrapper>
+      {isNoHistory ? (
+        <Wrapper> </Wrapper>
+      ) : (
+        <Input onButtonClick={onButtonClick} onBlur={onBlur} fullHeight />
+      )}
+    </InputsWrapper>
+  );
 
   return (
     <InputWrapper>
       <OperatorControls onButtonClick={onButtonClick} />
-      <InputsWrapper>
-        {isNoHistory ? (
-          <Wrapper> </Wrapper>
-        ) : (
-          <Input onButtonClick={onButtonClick} onBlur={onBlur} fullHeight />
-        )}
-      </InputsWrapper>
-      <Wrapper>
-        <Button onClick={onBackspace} disabled={!input} text={'⇐'} inverted height={'50%'} />
-        <Button
-          onClick={onApply}
-          disabled={!isInputUsable(input)}
-          text={'='}
-          title={preview}
-          inverted
-          height={'50%'}
-        />
-      </Wrapper>
+      {generateInputComponents(previousOutputs.length === 0)}
+      <InputProcessingSection onButtonClick={onButtonClick} />
     </InputWrapper>
   );
 };
 
 InputSection.propTypes = {
-  preview: PropTypes.string,
-  input: PropTypes.string,
-  updateOutput: PropTypes.func,
   onBlur: PropTypes.func,
   onButtonClick: PropTypes.func,
-  inputRemoveLastChar: PropTypes.func,
   previousOutputs: PropTypes.array
 };
 
 const mapStateToProps = ({ app }) => ({
-  preview: app.preview,
   input: app.input,
   operator: app.operator,
   previousOutputs: app.previousOutputs
