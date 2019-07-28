@@ -2,13 +2,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {
-  toggleOutputNegativity as toggleOutputNegativityAction,
   resetForm as resetFormAction,
   undoUpdateOutput as undoUpdateOutputAction
 } from 'common-actions';
 import Button from 'components/button';
 import Wrapper from 'components/wrapper';
-import Input from 'components/input';
+import InputOutputSection from 'components/input-output-section';
 
 const OutputWrapper = styled.div`
   overflow: hidden;
@@ -20,27 +19,8 @@ const OutputArea = styled.div`
   height: 100%;
 `;
 
-const NumberArea = styled(Wrapper)`
-  background-color: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.black};
-  font-weight: bold;
-  width: ${props => props.theme.sizes.wideColumn - props.theme.sizes.narrowColumn / 2}px;
-  @media (max-width: ${props =>
-      props.theme.sizes.wideColumn + props.theme.sizes.narrowColumn * 2}px) {
-    width: calc(
-      100vw - ${props => props.theme.sizes.narrowColumn * 2 + props.theme.sizes.narrowColumn / 2}px
-    );
-  }
-  font-size: 1.6rem;
-  padding-left: 10px;
-  padding-top: 5px;
-`;
-
 export const OutputSection = ({
-  output,
-  toggleOutputNegativity,
   onButtonClick,
-  onBlur,
   resetForm,
   undoUpdateOutput,
   previousOutputs = []
@@ -51,39 +31,10 @@ export const OutputSection = ({
     undoUpdateOutput();
   };
 
-  const onToggleSign = e => {
-    e.preventDefault();
-    onButtonClick();
-    toggleOutputNegativity();
-  };
-
   const onClear = e => {
     e.preventDefault();
     onButtonClick();
     resetForm();
-  };
-
-  const generateNumberComponents = isNoHistory => {
-    if (isNoHistory) {
-      return (
-        <Wrapper width={'400'}>
-          <Input fullHeight onButtonClick={onButtonClick} onBlur={onBlur} />
-        </Wrapper>
-      );
-    }
-    return (
-      <>
-        <Button
-          onClick={e => onToggleSign(e)}
-          text={output < 0 ? '-' : '+'}
-          width={'50px'}
-          pale
-          disabled={!output}
-          border={'1px solid #eeeeee'}
-        />
-        <NumberArea>{Math.abs(output)}</NumberArea>
-      </>
-    );
   };
 
   const isNoHistory = previousOutputs.length === 0;
@@ -93,7 +44,7 @@ export const OutputSection = ({
         <Wrapper>
           <Button onClick={e => onUndoClick(e)} disabled={isNoHistory} text={'↶'} inverted />
         </Wrapper>
-        {generateNumberComponents(isNoHistory)}
+        <InputOutputSection />
         <Wrapper>
           <Button onClick={onClear} text={'✗'} inverted fontSize={'1.5rem'} />
         </Wrapper>
@@ -103,10 +54,7 @@ export const OutputSection = ({
 };
 
 OutputSection.propTypes = {
-  output: PropTypes.number,
-  toggleOutputNegativity: PropTypes.func,
   onButtonClick: PropTypes.func,
-  onBlur: PropTypes.func,
   resetForm: PropTypes.func,
   undoUpdateOutput: PropTypes.func,
   previousOutputs: PropTypes.array
@@ -120,7 +68,6 @@ const mapStateToProps = ({ app }) => ({
 export default connect(
   mapStateToProps,
   {
-    toggleOutputNegativity: toggleOutputNegativityAction,
     resetForm: resetFormAction,
     undoUpdateOutput: undoUpdateOutputAction
   }
