@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const StyledWrapper = styled.div`
   overflow: hidden;
   display: inline-block;
-  box-sizing: border-box;
   vertical-align: top;
   color: ${props => props.color};
   width: ${props => props.width || props.theme.sizes.narrowColumn}px;

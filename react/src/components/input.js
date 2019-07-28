@@ -26,7 +26,6 @@ const InputField = styled.input.attrs({
   height: 100%;
   width: 100%;
   padding: 0 10px;
-  box-sizing: border-box;
   font-size: 1.3rem;
 `;
 
@@ -40,6 +39,13 @@ export const InputSection = ({
   fullHeight,
   operator
 }) => {
+  const ref = useRef();
+  useEffect(() => {
+    if (ref && ref.current) {
+      ref.current.focus();
+    }
+  }, []);
+
   const onInputChange = e => {
     e.preventDefault();
     if (isInputValid(e.target.value)) {
@@ -54,13 +60,6 @@ export const InputSection = ({
       updateOutput();
     }
   };
-
-  const ref = useRef();
-  useEffect(() => {
-    if (ref && ref.current) {
-      ref.current.focus();
-    }
-  }, []);
 
   const handleKeyPress = e => {
     const keyPressed = e.key;

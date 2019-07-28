@@ -1,8 +1,6 @@
 import {
-  SET_OUTPUT,
   UPDATE_OUTPUT,
   UPDATE_INPUT,
-  SET_OPERATOR,
   TOGGLE_NEGATIVITY,
   APPEND_TO_INPUT,
   INPUT_REMOVE_LAST_CHAR,
@@ -22,16 +20,6 @@ const initialState = {
 
 export const app = (state = initialState, action) => {
   switch (action.type) {
-    case SET_OUTPUT: {
-      if (isNaN(action.payload)) {
-        return state;
-      }
-      return {
-        ...state,
-        output: +action.payload,
-        previousOutputs: [...state.previousOutputs, state.output]
-      };
-    }
     case UPDATE_OUTPUT: {
       let { output } = state;
       const { preview, input } = state;
@@ -88,14 +76,6 @@ export const app = (state = initialState, action) => {
         ...state,
         ...newValues
       };
-    }
-    case SET_OPERATOR: {
-      const newState = {
-        ...state,
-        operator: action.payload
-      };
-      const newValues = getUpdatedTempValues(newState, state.input, initialState.preview);
-      return { ...newState, ...newValues };
     }
     case TOGGLE_NEGATIVITY: {
       const newState = {

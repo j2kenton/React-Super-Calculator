@@ -8,7 +8,10 @@ const GlobalStyle = createGlobalStyle`
     src: url(${OpenSans});
   }  
   font-family: OpenSans, sans-serif;
-}
+  }
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 export default GlobalStyle;
