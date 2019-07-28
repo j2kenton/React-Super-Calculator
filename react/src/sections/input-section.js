@@ -25,7 +25,8 @@ const InputsWrapper = styled(Wrapper)`
 `;
 
 export const InputSection = ({
-  input,
+  preview = '',
+  input = '',
   updateOutput,
   onButtonClick,
   inputRemoveLastChar,
@@ -66,6 +67,7 @@ export const InputSection = ({
           onClick={onApply}
           disabled={!isInputUsable(input)}
           text={'='}
+          title={preview}
           inverted
           height={'50%'}
         />
@@ -75,6 +77,7 @@ export const InputSection = ({
 };
 
 InputSection.propTypes = {
+  preview: PropTypes.string,
   input: PropTypes.string,
   updateOutput: PropTypes.func,
   onBlur: PropTypes.func,
@@ -84,6 +87,7 @@ InputSection.propTypes = {
 };
 
 const mapStateToProps = ({ app }) => ({
+  preview: app.preview,
   input: app.input,
   operator: app.operator,
   previousOutputs: app.previousOutputs

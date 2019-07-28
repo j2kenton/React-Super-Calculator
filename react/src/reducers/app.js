@@ -13,7 +13,7 @@ import { getUpdatedTempValues } from 'utils/tools';
 const initialState = {
   output: 0,
   previousOutputs: [],
-  preview: 'preview...',
+  preview: '',
   input: '',
   operator: ''
 };
@@ -23,9 +23,9 @@ export const app = (state = initialState, action) => {
     case UPDATE_OUTPUT: {
       let { output } = state;
       const { preview, input } = state;
-      if (!isNaN(preview)) {
+      if (preview) {
         output = +preview;
-      } else if (!isNaN(input)) {
+      } else if (input) {
         output = +input;
       }
       return {
@@ -40,7 +40,7 @@ export const app = (state = initialState, action) => {
     case SET_OUTPUT_AND_OPERATOR: {
       let { output } = state;
       const { preview, input } = state;
-      if (!isNaN(preview)) {
+      if (preview) {
         output = +preview;
       } else if (input !== '') {
         output = +input;
