@@ -67,7 +67,9 @@ export const InputSection = ({
     const isApplyingInput = isInputUsable(input);
     const isSelectingOperator = !OPERATORS[operator];
     const isOperatorChar = !!matchingOperator;
-    const isUpdatingOperator = isOperatorChar && (isApplyingInput || isSelectingOperator);
+    const isAddingNegativeSign = e.currentTarget.selectionStart === 0 && keyPressed === '-';
+    const isUpdatingOperator =
+      isOperatorChar && (isApplyingInput || isSelectingOperator) && !isAddingNegativeSign;
     if (isUpdatingOperator) {
       e.preventDefault();
       setOutputAndOperator(matchingOperator[0]);
