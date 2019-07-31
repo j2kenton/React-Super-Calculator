@@ -18,6 +18,11 @@ export const OPERATORS = Object.freeze({
     functionName: 'divide',
     symbol: '÷',
     keyboardChar: '/'
+  },
+  raiseToPower: {
+    functionName: 'raiseToPower',
+    symbol: '^',
+    keyboardChar: '^'
   }
 });
 

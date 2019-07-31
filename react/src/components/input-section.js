@@ -62,10 +62,10 @@ export const InputSection = ({
   const handleKeyPress = e => {
     const keyPressed = e.key;
     const matchingOperator = Object.entries(OPERATORS).find(
-      ([, value]) => value.keyboardChar === keyPressed
+      operatorSingle => operatorSingle[1].keyboardChar === keyPressed
     );
     const isApplyingInput = isInputUsable(input);
-    const isSelectingOperator = !OPERATORS[operator];
+    const isSelectingOperator = !OPERATORS[operator] || !input;
     const isOperatorChar = !!matchingOperator;
     const isAddingNegativeSign = e.currentTarget.selectionStart === 0 && keyPressed === '-';
     const isUpdatingOperator =
