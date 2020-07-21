@@ -99,7 +99,7 @@
     "fingerprintjs2sync": "1.5.5",
     "formik": "1.5.4",
     "jquery": "3.3.1",
-    "lodash": "4.17.2",
+    "lodash": "4.17.19",
     "normalize.css": "8.0.1",
     "normalizr": "3.2.2",
     "polished": "3.4.1",
