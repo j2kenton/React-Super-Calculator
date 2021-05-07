@@ -148,7 +148,7 @@
     "styled-components": "4.2.0",
     "superagent": "3.1.0",
     "superagent-promise-plugin": "3.2.0",
-    "ua-parser-js": "0.7.20",
+    "ua-parser-js": "0.7.24",
     "validator": "6.2.1"
   },
   "husky": {
